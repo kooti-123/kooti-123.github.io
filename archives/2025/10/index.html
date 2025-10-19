@@ -1,146 +1,360 @@
-doctype html
-html(lang=config.language)
-  head
-    meta(http-equiv="Content-Type", content="text/html; charset=UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
-    meta(name="theme-color", content=theme.colors.primary)
-    meta(name="msapplication-navbutton-color", content=theme.colors.primary)
-    meta(name="apple-mobile-web-app-capable", content="yes")
-    meta(name="apple-mobile-web-app-status-bar-style", content="black-translucent")
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    title= page_title ? page_title + ' - ' + config.title : config.title
+<link rel="stylesheet" href="/css/main.css">
 
-    //- Dark mode script to prevent flash
-    if theme.features && theme.features.dark_mode
-      script.
-        (function() {
-          // 尽早应用暗色模式，防止闪烁
-          var savedDarkMode = localStorage.getItem('darkMode') === 'true';
-          if (savedDarkMode) {
-            document.documentElement.classList.add('dark-mode');
-          }
-        })();
 
-    //- Fonts
-    link(rel="preconnect", href="https://fonts.googleapis.com")
-    link(rel="preconnect", href="https://fonts.gstatic.com", crossorigin)
-    link(href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap", rel="stylesheet")
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-    //- Font Awesome Icons
-    link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css")
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"kooti-123.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-    //- QR Code library for WeChat sharing
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js")
+  <meta property="og:type" content="website">
+<meta property="og:title" content="LoveDream">
+<meta property="og:url" content="https://kooti-123.github.io/archives/2025/10/index.html">
+<meta property="og:site_name" content="LoveDream">
+<meta property="og:locale">
+<meta property="article:author" content="夏仁忠">
+<meta name="twitter:card" content="summary">
 
-    //- RSS
-    if feed
-      link(rel="alternate", href=feed, title=config.title, type="application/atom+xml")
+<link rel="canonical" href="https://kooti-123.github.io/archives/2025/10/">
 
-    //- Favicon
-    link(rel="icon", href=url_for(theme.favicon))
 
-    //- Styles
-    != css('css/main')
-    != css('css/tags')
-    != css('css/categories')
-    != css('css/categories-accordion')
-    != css('css/highlight')
-    != css('css/toc')
-    != css('css/image-zoom')
-    != css('css/share')
-    != css('css/mobile-nav')
-    != css('css/search')
-    != css('css/scrollbar')
-    != css('css/timeline')
-    != css('css/animations')
-    != css('css/ai-theme')
-    != css('css/loading-animation')
-    // 条件加载关于页面样式
-    if page.path === 'about/index.html'
-      != css('css/about')
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : false,
+    lang   : 'zh'
+  };
+</script>
 
-    //- Theme color variables from config
-    style.
-      :root {
-        --primary-color: #{theme.colors.primary};
-        --secondary-color: #{theme.colors.secondary};
-        --accent-color: #{theme.colors.accent};
-        --background-color: #{theme.colors.background};
-        --text-color: #{theme.colors.text};
-        --overlay-color: #{theme.colors.overlay};
-        --tag-background-color: #{theme.colors.tag_background};
-        --card-background-color: #{theme.colors.card_background};
+  <title>الأرشيف | LoveDream</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="تشغيل شريط التصفح">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">LoveDream</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>الأرشيفات</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content archive">
+            
+
+  
+  
+  
+  <div class="post-block">
+    <div class="posts-collapse">
+      <div class="collection-title">
+        <span class="collection-header">هِم..! 2 مقالاً بالمُجمل. واصل الكتابة.</span>
+      </div>
+
+      
+    <div class="collection-year">
+      <span class="collection-header">2025</span>
+    </div>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2025-10-19T16:01:30+08:00"
+              content="2025-10-19">
+          10-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2025/10/19/projet/" itemprop="url">
+            <span itemprop="name">بدون عنوان</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+  <article itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <div class="post-meta">
+        <time itemprop="dateCreated"
+              datetime="2025-10-19T15:56:44+08:00"
+              content="2025-10-19">
+          10-19
+        </time>
+      </div>
+
+      <div class="post-title">
+          <a class="post-title-link" href="/2025/10/19/hello-world/" itemprop="url">
+            <span itemprop="name">Hello World</span>
+          </a>
+      </div>
+
+    </header>
+  </article>
+
+
+    </div>
+  </div>
+  
+  
+  
+
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
 
-    //- Custom head
-    if theme.custom_head
-      != theme.custom_head
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
 
-    //- Inject head
-    if theme.inject && theme.inject.head
-      each item in theme.inject.head
-        != item
+  <aside class="sidebar">
+    <div class="sidebar-inner">
 
-  body
-    #app
-      != partial('_partial/header')
-      != partial('_partial/search')
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          المحتويات
+        </li>
+        <li class="sidebar-nav-overview">
+          عام
+        </li>
+      </ul>
 
-      main.main
-        != body
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      != partial('_partial/footer')
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">夏仁忠</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-name">المقالات</span>
+        </a>
+      </div>
+  </nav>
+</div>
 
-    // 立即应用暗色模式，避免页面闪烁
-    if theme.features && theme.features.dark_mode
-      script.
-        (function() {
-          // 检查本地存储中的暗色模式设置
-          const savedDarkMode = localStorage.getItem('darkMode') === 'true';
-          // 如果设置为暗色模式，立即应用到body
-          if (savedDarkMode) {
-            document.body.classList.add('dark-mode');
-          }
 
-          // 防止页面闪烁，在DOM加载完成前设置一个初始类
-          document.documentElement.style.visibility = 'hidden';
-          document.addEventListener('DOMContentLoaded', function() {
-            document.documentElement.style.visibility = 'visible';
-          });
-        })();
 
-    //- Scripts
-    != js('js/main')
-    != js('js/tags')
-    != js('js/categories-accordion')
-    != js('js/highlight')
-    != js('js/load-more')
-    != js('js/header-scroll')
-    != js('js/toc')
-    != js('js/image-zoom')
-    != js('js/share')
-    != js('js/search')
-    != js('js/hide-inline-interaction')
-    != js('js/hide-toggle-interaction')
-    != js('js/dark-mode-sync')
-    != js('js/animations')
-    != js('js/ai-theme')
-    != js('js/loading-animation')
+      </div>
 
-    //- Theme configuration for JavaScript
-    script.
-      window.theme = {
-        features: !{JSON.stringify(theme.features)},
-        code_block: !{JSON.stringify(theme.code_block)},
-        ai_summary: !{JSON.stringify(theme.ai_summary)},
-        categories: !{JSON.stringify(theme.categories)}
-      };
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
 
-    //- Custom scripts
-    if theme.custom_scripts
-      != theme.custom_scripts
 
-    //- Inject bottom
-    if theme.inject && theme.inject.bottom
-      each item in theme.inject.bottom
-        != item
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2025</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">夏仁忠</span>
+</div>
+  <div class="powered-by">تطبيق الموقع <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
