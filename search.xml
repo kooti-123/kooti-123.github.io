@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Hello World</title>
+    <url>/2025/10/19/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>入门动态规划(Dynamic Programming)问题——leetcode 70(爬楼梯)和746(最小花费爬楼梯)的简单dp问题</title>
+    <url>/2025/10/21/%E5%85%A5%E9%97%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92(Dynamic%20Programming)%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94leetcode%2070(%E7%88%AC%E6%A5%BC%E6%A2%AF)%E5%92%8C746(%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF)%E7%9A%84%E7%AE%80%E5%8D%95dp%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>首先动态规划和贪心的区别：贪心的核心就是从局部最优推到整体最优，和上一个状态没有关系，而动态规划顾名思义是动态的问题，比如经典的背包问题，每次装入时要考虑到背包的容量，而容量的大小通常由上一个装入背包的大小影响，所以贪心解决不了动态规划</p>
+<p>在动态规划问题上，我们要先考虑好5步：</p>
+<p>1：确定dp数组及下标含义</p>
+<p>2：确定递推公式</p>
+<p>3：dp数组的初始化</p>
+<p>4：数组的遍历顺序</p>
+<p>5：举例推导dp数组</p>
+<p>以leetcode70为例：</p>
+<p>1，确定dp数组：dp[i]数组确定为到达i阶有多少种方案;</p>
+<p>2，递推公式：我们到达第i阶是怎么到达的，只有两种方案，一个是从i-1走1步，另一个是从i-2走2步，所以到达第i阶就是这两个的总和相加，而到i-1的方案总数为dp[i-1],同理到达i-2的数量为dp[i-2]；所以推导出递推公式为dp[i]&#x3D;dp[i-1]+dp[i-2];</p>
+<p>3，初始化：dp[1]&#x3D;1,dp[2]&#x3D;2;</p>
+<p>4，数组遍历顺序：因为是由前两个的阶梯数推导出后第i个阶梯的方案，则从前往后遍历；</p>
+<p>5，可以自己举例子 (n&#x3D;3有三种)</p>
+<p>从而我们便可以得出代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">climbStairs</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p>leetcode746：</p>
+<p>1，确定dp数组：dp[i]数组确定为到达i阶需要花费的总的钱数;</p>
+<p>2，数组遍历顺序：这里我写这道题时先考虑的遍历顺序，由题可知，dp[n]&#x3D;0,也就是到达屋顶，所以我进行反向遍历，那么最后的第1层和第0层只要比较两个的最小值就可以知道从哪个点出发花费最小；</p>
+<p>3，递推公式：爬到第i层我们的最小花费怎么求？同70我们也可以知道i的花费也由i-1和i-2决定，毕竟dp[i-1],dp[i-2]分别是到达第i-1层的最小花费和到达第i-2层的最小花费，所以我们找到其中的最小花费，则dp[i]&#x3D;cost[i]+min(dp[i-1],dp[i-2]);</p>
+<p>4，初始化：dp[n]&#x3D;0,dp[n-1]&#x3D;cost[n-1];</p>
+<p>5，举例子：略</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>()] = <span class="number">0</span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>() - <span class="number">1</span>] = cost[cost.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = cost.<span class="built_in">size</span>() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            dp[i] = cost[i] + <span class="built_in">min</span>(dp[i + <span class="number">1</span>], dp[i + <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(dp[<span class="number">0</span>], dp[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>不过正向和方向遍历也没什么区别</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 默认第一步都是不花费体力的</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= cost.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>] + cost[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + cost[i - <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[cost.<span class="built_in">size</span>()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>参考思路来自《代码随想录》</p>
+]]></content>
+      <categories>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dp</tag>
+      </tags>
+  </entry>
+</search>
