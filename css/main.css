@@ -1416,7 +1416,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #9904e8;
+    background: #ff7f28;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -1636,7 +1636,6 @@ pre code {
   line-height: 1.8;
   overflow: hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
 }
 .post-toc .nav .nav-child {
   --height: 0;
@@ -3057,7 +3056,7 @@ header.header {
   margin: 5px 8px 5px 0; /* 标签之间的间距 (上 右 下 左) */
   padding: 8px 14px; /* 标签内部的文字边距 */
   font-size: 0.9em;
-  color: #555; /* 默认文字颜色 */
+  color: #8f3232; /* 默认文字颜色 */
   background: #f2f2f2; /* 默认背景色 */
   border: 1px solid #e0e0e0; /* 边框 */
   border-radius: 20px; /* 圆角大小，使其成为胶囊形状 */
@@ -3068,8 +3067,8 @@ header.header {
 .tag-cloud a:hover,
 .post-tags a:hover {
   color: #fff; /* 悬停时文字颜色 */
-  background: #0078ff; /* 悬停时背景色 (蓝色) */
-  border-color: #0078ff; /* 悬停时边框颜色 */
+  background: #dcdcdc; /* 悬停时背景色 (蓝色) */
+  border-color: #dcdcdc; /* 悬停时边框颜色 */
   transform: translateY(-2px); /* 轻微上浮效果 */
   box-shadow: 0 4px 10px rgba(0,120,255,0.2); /* 添加阴影 */
 }
@@ -3087,8 +3086,8 @@ header.header {
 [data-theme='dark'] .tag-cloud a:hover,
 [data-theme='dark'] .post-tags a:hover {
   color: #fff;
-  background: #0085ff; /* 深色模式下稍亮的蓝色 */
-  border-color: #0085ff;
+  background: #dcdcdc; /* 深色模式下稍亮的蓝色 */
+  border-color: #dcdcdc;
 }
 .main-inner {
   border-radius: 20px;
@@ -3107,7 +3106,7 @@ header.header {
 .post-button .btn {
   display: inline-block;
   padding: 8px 20px;
-  background: #0078ff; /* 按钮背景色 */
+  background: #dcdcdc; /* 按钮背景色 */
   color: #fff; /* 文字颜色 */
   border: none; /* 去掉原来的边框 */
   border-radius: 20px; /* 圆角，使其成为胶囊状 */
@@ -3115,7 +3114,7 @@ header.header {
   box-shadow: 0 2px 8px rgba(0,120,255,0.2);
 }
 .post-button .btn:hover {
-  background: #005fe0; /* 鼠标悬停时的背景色 */
+  background: #307493; /* 鼠标悬停时的背景色 */
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0,120,255,0.3);
 }
@@ -3170,8 +3169,115 @@ pre,
 /* 鼠标悬停时，底边框变实，背景变色 */
 .post-body a:hover {
   color: #fff;
-  background: #0078ff;
-  border-bottom-color: #0078ff;
+  background: #dcdcdc;
+  border-bottom-color: #dcdcdc;
   border-radius: 4px; /* 加一点圆角 */
   padding: 2px 4px; /* 加一点内边距，让背景更好看 */
+}
+/* ===== 分类首页（/categories/）美化 ===== */
+.category-all-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+.category-all-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-align: left;
+  color: #333;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #4a90e2;
+  padding-left: 0.5rem;
+}
+.category-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.category-list-item {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  transition: all 0.3s ease;
+  border: 1px solid #eee;
+}
+.category-list-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.category-list-item a {
+  color: #333 !important;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+.category-list-item a:hover {
+  color: #4a90e2;
+}
+.category-list-item .category-list-count {
+  float: right;
+  font-size: 0.9rem;
+  color: #999;
+}
+/* ===== 分类详情页（/categories/xxx/） ===== */
+/* NexT 8.x 实际是 posts-collapse 时间线结构 */
+.posts-collapse {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+/* 分类名标题 */
+.collection-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #4a4a4a;
+  border-left: 4px solid #4a90e2;
+  padding-left: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+/* 移除时间线竖线和点点 */
+.posts-collapse::before,
+.posts-collapse .collection-year::before,
+.posts-collapse .post-header::before {
+  display: none !important;
+}
+.posts-collapse .post {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  margin-bottom: 1rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #eee;
+  transition: all 0.3s ease;
+}
+.posts-collapse .post:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+.posts-collapse .post-title-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.posts-collapse .post-title-link:hover {
+  color: #4a90e2;
+}
+.posts-collapse .post-meta {
+  font-size: 0.9rem;
+  color: #999;
+  margin-top: 0.3rem;
+}
+/* 隐藏时间标签（可选） */
+.posts-collapse .post-time {
+  display: none;
+}
+/* 调整整体间距 */
+.posts-collapse .collection-year {
+  display: none;
 }
