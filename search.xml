@@ -1,17 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hexo+Github搭建个人博客</title>
-    <url>/2025/10/25/Hexo+Github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[]]></content>
+    <title>基础回溯算法</title>
+    <url>/2025/10/25/%E5%9F%BA%E7%A1%80%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>回溯法也可以叫做回溯搜索法，它是一种搜索的方式，回溯是递归的副产品，只要有递归就会有回溯。</p>
+<span id="more"></span>
+
+<p>回溯算法并不是什么高效的算法，实质上就是不断穷举出所有的可能性，其中可以加一些剪枝操作以提高效率，但本质上还是穷举，所以并不会快到那哪里去</p>
+<hr>
+<p><strong>回溯法解决的问题</strong></p>
+<p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+<p>回溯法的问题都可以抽象为树形结构来解决</p>
+<hr>
+<p><strong>回溯法的模板分为三部分：</strong></p>
+<p>1是函数传递的参数和返回值：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>通常没有返回值，而在写回溯函数的时候，参数不需要那么快定下来，可以在写的过程中知道具体逻辑，然后要调用哪些参数就填写哪些参数</p>
+<p>2是回溯的终止条件：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">    存放结果;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历树形结构一定要有终止条件</p>
+<p>3是回溯搜索的遍历：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">	存放节点;</span><br><span class="line">	<span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">	回溯，撤销节点;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下就是回溯搜索的完整模板</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">        存放结果;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">        存放节点;</span><br><span class="line">        <span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">        回溯，撤销节点;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>下面举leetcode的几个题目为例</strong></p>
+<p>77，216，17</p>
+]]></content>
       <categories>
         <category>技术</category>
-        <category>教程</category>
+        <category>Code</category>
       </categories>
       <tags>
-        <tag>Hexo</tag>
-        <tag>Github</tag>
-        <tag>博客</tag>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>回溯</tag>
       </tags>
   </entry>
   <entry>
@@ -55,11 +90,13 @@
 <p>参考思路来自《代码随想录》</p>
 ]]></content>
       <categories>
+        <category>技术</category>
         <category>Code</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
         <tag>dp</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
 </search>
