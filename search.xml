@@ -15,192 +15,212 @@
       </tags>
   </entry>
   <entry>
-    <title>Mermaid语法总览</title>
+    <title>Mermaid 语法总览</title>
     <url>/2025/10/28/Mermaid%20%E8%AF%AD%E6%B3%95%E6%80%BB%E8%A7%88/</url>
-    <content><![CDATA[<p>Mermaid 的核心思想是“用文本描述图表”，它的语法简洁且易于学习。</p>
-<h4 id="1-图表类型声明"><a href="#1-图表类型声明" class="headerlink" title="1. 图表类型声明"></a>1. 图表类型声明</h4><p>所有 Mermaid 图表都以声明图表类型开始，例如 graph TD、sequenceDiagram、gantt 等。</p>
-<h4 id="2-节点和连接-Graph-Flowchart"><a href="#2-节点和连接-Graph-Flowchart" class="headerlink" title="2. 节点和连接 (Graph&#x2F;Flowchart)"></a>2. 节点和连接 (Graph&#x2F;Flowchart)</h4><p>这是 Mermaid 最常用也最强大的功能之一，用于绘制流程图、组织结构图等。</p>
-<span id="more"></span>
+    <content><![CDATA[<hr>
+<h2 id="1-流程图-Flowchart"><a href="#1-流程图-Flowchart" class="headerlink" title="1. 流程图 (Flowchart)"></a>1. 流程图 (Flowchart)</h2><pre class="mermaid">flowchart TD
+    A[开始] --> B{判断条件}
+    B -->|是| C[执行操作1]
+    B -->|否| D[执行操作2]
+    C --> E[结束]
+    D --> E</pre>
 
-<p>- </p>
-<ul>
-<li><p><strong>声明图表方向</strong>:</p>
-<p>- </p>
-<ul>
-<li>graph TD: Top Down (从上到下)</li>
-<li>graph LR: Left Right (从左到右)</li>
-<li>graph RL: Right Left (从右到左)</li>
-<li>graph BT: Bottom Top (从下到上)</li>
-</ul>
-</li>
-<li><p><strong>节点定义</strong>:</p>
-<h2 id="id-文本-默认矩形节点。"><a href="#id-文本-默认矩形节点。" class="headerlink" title="-- id[文本]: 默认矩形节点。"></a>-<br>- id[文本]: 默认矩形节点。</h2><ul>
-<li>A[方形节点]</li>
-<li><h2 id="id-文本-圆角矩形节点。"><a href="#id-文本-圆角矩形节点。" class="headerlink" title="id(文本): 圆角矩形节点。"></a>id(文本): 圆角矩形节点。</h2><ul>
-<li>B(圆角节点)</li>
-</ul>
-</li>
-<li><h2 id="id-文本-圆形节点。"><a href="#id-文本-圆形节点。" class="headerlink" title="id((文本)): 圆形节点。"></a>id((文本)): 圆形节点。</h2><ul>
-<li>C((圆形节点))</li>
-</ul>
-</li>
-<li><h2 id="id-文本-不对称（旗形）节点。"><a href="#id-文本-不对称（旗形）节点。" class="headerlink" title="id&gt;文本]: 不对称（旗形）节点。"></a>id&gt;文本]: 不对称（旗形）节点。</h2><ul>
-<li>D&gt;旗形节点]</li>
-</ul>
-</li>
-<li><h2 id="id-文本-菱形节点。"><a href="#id-文本-菱形节点。" class="headerlink" title="id{文本}: 菱形节点。"></a>id{文本}: 菱形节点。</h2><ul>
-<li>E{菱形节点}</li>
-</ul>
-</li>
-<li><h2 id="id-文本-梯形节点。"><a href="#id-文本-梯形节点。" class="headerlink" title="id[[文本]]: 梯形节点。"></a>id[[文本]]: 梯形节点。</h2><ul>
-<li>F[[梯形节点]]</li>
-</ul>
-</li>
-<li><h2 id="id-文本-体育场形节点。"><a href="#id-文本-体育场形节点。" class="headerlink" title="id[(文本)]: 体育场形节点。"></a>id[(文本)]: 体育场形节点。</h2><ul>
-<li>G[(体育场形节点)]</li>
-</ul>
-</li>
-<li><h2 id="id-文本-平行四边形节点。"><a href="#id-文本-平行四边形节点。" class="headerlink" title="id[&#x2F;文本&#x2F;]: 平行四边形节点。"></a>id[&#x2F;文本&#x2F;]: 平行四边形节点。</h2><ul>
-<li>H[&#x2F;平行四边形节点&#x2F;]</li>
-</ul>
-</li>
-<li><h2 id="id-文本-反向平行四边形节点。"><a href="#id-文本-反向平行四边形节点。" class="headerlink" title="id[\文本]: 反向平行四边形节点。"></a>id[\文本]: 反向平行四边形节点。</h2><ul>
-<li>I[\反向平行四边形节点]</li>
-</ul>
-</li>
-<li><h2 id="id-文本-双圆形节点。"><a href="#id-文本-双圆形节点。" class="headerlink" title="id(((文本))): 双圆形节点。"></a>id(((文本))): 双圆形节点。</h2><ul>
-<li>J(((双圆形节点)))</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><p><strong>连接 (箭头)</strong>:</p>
-<p>- </p>
-<ul>
-<li>A –&gt; B: 带有箭头的连接。</li>
-<li>A — B: 没有箭头的连接。</li>
-<li>A – 文本 –&gt; B: 带有文本标签的箭头。</li>
-<li>A –o B: 带圆圈的箭头。</li>
-<li>A –x B: 带叉号的箭头。</li>
-<li>A &#x3D;&#x3D; 文本 &#x3D;&#x3D;&gt; B: 粗线箭头。</li>
-<li>A -.-&gt; B: 虚线箭头。</li>
-<li>A -. 文本 .-&gt; B: 带有文本标签的虚线箭头。</li>
-</ul>
-</li>
-<li><p><strong>子图 (Subgraphs)</strong>:</p>
-<p>- </p>
-<ul>
-<li><p>codeMermaid</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">subgraph My Subgraph</span><br><span class="line">    A --&gt; B</span><br><span class="line">end</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p><strong>类 (Classes) &#x2F; 样式 (Styling)</strong>:</p>
-<p>- </p>
-<ul>
-<li>classDef className fill:#f9f,stroke:#333,stroke-width:2px;</li>
-<li>class A,B className;</li>
-<li>style A fill:#f9f,stroke:#333,stroke-width:2px;</li>
-</ul>
-</li>
-</ul>
-<h4 id="3-序列图-Sequence-Diagram"><a href="#3-序列图-Sequence-Diagram" class="headerlink" title="3. 序列图 (Sequence Diagram)"></a>3. 序列图 (Sequence Diagram)</h4><p>用于描述对象之间按时间顺序的消息交换。</p>
-<p>- </p>
-<ul>
-<li>sequenceDiagram</li>
-<li>participant Actor as 参与者</li>
-<li>Actor -&gt;&gt; Other: 消息内容 (实线虚箭头)</li>
-<li>Actor -&gt; Other: 消息内容 (实线实箭头)</li>
-<li>Actor –&gt;&gt; Other: 消息内容 (虚线虚箭头)</li>
-<li>Actor – Other: 消息内容 (虚线实箭头)</li>
-<li>Note over Actor,Other: 备注</li>
-<li>alt 替代选项 &#x2F; else &#x2F; end</li>
-<li>loop 循环 &#x2F; end</li>
-<li>opt 可选 &#x2F; end</li>
-<li>par 并行 &#x2F; and &#x2F; end</li>
-<li>activate Actor &#x2F; deactivate Actor</li>
-</ul>
-<h4 id="4-甘特图-Gantt-Chart"><a href="#4-甘特图-Gantt-Chart" class="headerlink" title="4. 甘特图 (Gantt Chart)"></a>4. 甘特图 (Gantt Chart)</h4><p>用于项目管理，展示任务的开始、结束时间和持续时间。</p>
-<p>- </p>
-<ul>
-<li>gantt</li>
-<li>dateFormat YYYY-MM-DD</li>
-<li>section 章节名称</li>
-<li>任务名称 : ID, start_date, end_date</li>
-<li>任务名称 : ID, after ID, duration</li>
-<li>任务名称 : active, ID, start_date, end_date (active 强调任务进行中)</li>
-<li>任务名称 : done, ID, start_date, end_date (done 强调任务已完成)</li>
-<li>crit 关键任务</li>
-</ul>
-<h4 id="5-类图-Class-Diagram"><a href="#5-类图-Class-Diagram" class="headerlink" title="5. 类图 (Class Diagram)"></a>5. 类图 (Class Diagram)</h4><p>用于表示类、接口以及它们之间的关系。</p>
-<h2 id="classDiagram-class-ClassName"><a href="#classDiagram-class-ClassName" class="headerlink" title="-- classDiagram- class ClassName {"></a>-<br>- classDiagram<br>- class ClassName {</h2><ul>
-<li>+field: Type</li>
-<li>-method(params): ReturnType</li>
-<li>}</li>
-<li>ClassName &lt;|– AnotherClass: 继承 (实现)</li>
-<li>ClassName &lt;– Aggregation: 聚合 (空心菱形)</li>
-<li>ClassName *– Composition: 组合 (实心菱形)</li>
-<li>ClassName –&gt; Association: 关联</li>
-<li>ClassName ..&gt; Dependency: 依赖 (虚线箭头)</li>
-<li>ClassName –|&gt; Interface: 实现接口</li>
-</ul>
-<h4 id="6-状态图-State-Diagram"><a href="#6-状态图-State-Diagram" class="headerlink" title="6. 状态图 (State Diagram)"></a>6. 状态图 (State Diagram)</h4><p>用于描述一个对象生命周期中可能的状态以及状态之间的转换。</p>
-<h2 id="stateDiagram-v2-推荐使用v2版本-–-State1-初始状态-State1-–-State2-状态转换-State1-–-State3-事件-条件-state-“State-Name”-as-StateID-自定义状态显示名称-state-StateID"><a href="#stateDiagram-v2-推荐使用v2版本-–-State1-初始状态-State1-–-State2-状态转换-State1-–-State3-事件-条件-state-“State-Name”-as-StateID-自定义状态显示名称-state-StateID" class="headerlink" title="-- stateDiagram-v2 (推荐使用v2版本)- [*] –&gt; State1: 初始状态- State1 –&gt; State2: 状态转换- State1 –&gt; State3: 事件&#x2F;条件- state “State Name” as StateID (自定义状态显示名称)- state StateID {"></a>-<br>- stateDiagram-v2 (推荐使用v2版本)<br>- [*] –&gt; State1: 初始状态<br>- State1 –&gt; State2: 状态转换<br>- State1 –&gt; State3: 事件&#x2F;条件<br>- state “State Name” as StateID (自定义状态显示名称)<br>- state StateID {</h2><ul>
-<li>StateA –&gt; StateB</li>
-<li>} (嵌套状态)</li>
-<li>State1 –&gt; [*]: 结束状态</li>
-</ul>
-<h4 id="7-实体关系图-Entity-Relationship-Diagram-ER-Diagram"><a href="#7-实体关系图-Entity-Relationship-Diagram-ER-Diagram" class="headerlink" title="7. 实体关系图 (Entity Relationship Diagram - ER Diagram)"></a>7. 实体关系图 (Entity Relationship Diagram - ER Diagram)</h4><p>用于表示数据库中的实体、属性和它们之间的关系。</p>
-<h2 id="erDiagram-ENTITY-–o-OTHER-ENTITY-关系文本-各种基数"><a href="#erDiagram-ENTITY-–o-OTHER-ENTITY-关系文本-各种基数" class="headerlink" title="-- erDiagram- ENTITY ||–o| OTHER_ENTITY : 关系文本 (各种基数)"></a>-<br>- erDiagram<br>- ENTITY ||–o| OTHER_ENTITY : 关系文本 (各种基数)</h2><ul>
-<li>||: 恰好一个</li>
-<li>|o: 零或一个</li>
-<li>}o: 零或多个</li>
-<li>}|: 一个或多个</li>
-<li><h2 id="ENTITY"><a href="#ENTITY" class="headerlink" title="ENTITY {"></a>ENTITY {</h2><ul>
-<li>数据类型 属性名 PK || FK ||</li>
-<li>}</li>
-</ul>
-</li>
-</ul>
-<h4 id="8-用户旅程图-User-Journey-Map"><a href="#8-用户旅程图-User-Journey-Map" class="headerlink" title="8. 用户旅程图 (User Journey Map)"></a>8. 用户旅程图 (User Journey Map)</h4><p>用于描述用户在使用产品或服务时的体验流程。</p>
-<h2 id="journey-title-My-user-journey-section-用户角色-行为-情绪-描述"><a href="#journey-title-My-user-journey-section-用户角色-行为-情绪-描述" class="headerlink" title="-- journey- title My user journey- section 用户角色- 行为 : 情绪 : 描述"></a>-<br>- journey<br>- title My user journey<br>- section 用户角色<br>- 行为 : 情绪 : 描述</h2><ul>
-<li>想知道天气 : happy : 用户打开App</li>
-<li>查看预报 : neutral : 浏览界面</li>
-</ul>
-<h4 id="9-饼图-Pie-Chart"><a href="#9-饼图-Pie-Chart" class="headerlink" title="9. 饼图 (Pie Chart)"></a>9. 饼图 (Pie Chart)</h4><p>用于显示数据的比例分布。</p>
-<p>- </p>
-<ul>
-<li>pie</li>
-<li>title 饼图标题</li>
-<li>“标签1” : 比例值1</li>
-<li>“标签2” : 比例值2</li>
-</ul>
-<h4 id="10-Git-图-Gitgraph"><a href="#10-Git-图-Gitgraph" class="headerlink" title="10. Git 图 (Gitgraph)"></a>10. Git 图 (Gitgraph)</h4><p>用于可视化 Git 仓库的历史和操作。</p>
-<p>- </p>
-<ul>
-<li>gitGraph</li>
-<li>commit</li>
-<li>branch develop</li>
-<li>commit</li>
-<li>checkout main</li>
-<li>merge develop</li>
-<li>tag “v1.0”</li>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A[开始] --&gt; B&#123;判断条件&#125;</span><br><span class="line">    B --&gt;|是| C[执行操作1]</span><br><span class="line">    B --&gt;|否| D[执行操作2]</span><br><span class="line">    C --&gt; E[结束]</span><br><span class="line">    D --&gt; E</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-时序图-Sequence-Diagram"><a href="#2-时序图-Sequence-Diagram" class="headerlink" title="2. 时序图 (Sequence Diagram)"></a>2. 时序图 (Sequence Diagram)</h2><pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: 你好，Bob
+    Bob-->>Alice: 你好，Alice
+    Alice->>Bob: 你在做什么？</pre>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant Alice</span><br><span class="line">    participant Bob</span><br><span class="line">    Alice-&gt;&gt;Bob: 你好，Bob</span><br><span class="line">    Bob--&gt;&gt;Alice: 你好，Alice</span><br><span class="line">    Alice-&gt;&gt;Bob: 你在做什么？</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-甘特图-Gantt-Chart"><a href="#3-甘特图-Gantt-Chart" class="headerlink" title="3. 甘特图 (Gantt Chart)"></a>3. 甘特图 (Gantt Chart)</h2><pre class="mermaid">gantt
+    title 项目进度
+    dateFormat  YYYY-MM-DD
+    section 设计
+    需求分析       :a1, 2025-10-01, 7d
+    原型设计       :after a1, 5d
+    section 开发
+    前端开发       :2025-10-10, 10d
+    后端开发       :2025-10-12, 12d</pre>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title 项目进度</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section 设计</span><br><span class="line">    需求分析       :a1, 2025-10-01, 7d</span><br><span class="line">    原型设计       :after a1, 5d</span><br><span class="line">    section 开发</span><br><span class="line">    前端开发       :2025-10-10, 10d</span><br><span class="line">    后端开发       :2025-10-12, 12d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-类图-Class-Diagram"><a href="#4-类图-Class-Diagram" class="headerlink" title="4. 类图 (Class Diagram)"></a>4. 类图 (Class Diagram)</h2><pre class="mermaid">classDiagram
+    class Animal {
+        +String name
+        +eat()
+    }
+    class Dog {
+        +bark()
+    }
+    Animal <|-- Dog</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    class Animal &#123;</span><br><span class="line">        +String name</span><br><span class="line">        +eat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Dog &#123;</span><br><span class="line">        +bark()</span><br><span class="line">    &#125;</span><br><span class="line">    Animal &lt;|-- Dog</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-状态图-State-Diagram"><a href="#5-状态图-State-Diagram" class="headerlink" title="5. 状态图 (State Diagram)"></a>5. 状态图 (State Diagram)</h2><pre class="mermaid">stateDiagram-v2
+    [*] --> 空闲
+    空闲 --> 工作
+    工作 --> 空闲
+    工作 --> 停止
+    停止 --> [*]</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">    [*] --&gt; 空闲</span><br><span class="line">    空闲 --&gt; 工作</span><br><span class="line">    工作 --&gt; 空闲</span><br><span class="line">    工作 --&gt; 停止</span><br><span class="line">    停止 --&gt; [*]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-饼图-Pie-Chart"><a href="#6-饼图-Pie-Chart" class="headerlink" title="6. 饼图 (Pie Chart)"></a>6. 饼图 (Pie Chart)</h2><pre class="mermaid">pie
+    title 网站流量来源
+    "直接访问" : 45
+    "搜索引擎" : 30
+    "社交媒体" : 25</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pie</span><br><span class="line">    title 网站流量来源</span><br><span class="line">    &quot;直接访问&quot; : 45</span><br><span class="line">    &quot;搜索引擎&quot; : 30</span><br><span class="line">    &quot;社交媒体&quot; : 25</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-用户旅程图-Journey-Diagram"><a href="#7-用户旅程图-Journey-Diagram" class="headerlink" title="7. 用户旅程图 (Journey Diagram)"></a>7. 用户旅程图 (Journey Diagram)</h2><pre class="mermaid">journey
+    title 用户注册流程
+    section 注册
+      访问页面: 5: 用户
+      填写表单: 4: 用户
+      提交信息: 3: 用户
+    section 验证
+      邮箱验证: 2: 用户
+      完成注册: 5: 用户</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journey</span><br><span class="line">    title 用户注册流程</span><br><span class="line">    section 注册</span><br><span class="line">      访问页面: 5: 用户</span><br><span class="line">      填写表单: 4: 用户</span><br><span class="line">      提交信息: 3: 用户</span><br><span class="line">    section 验证</span><br><span class="line">      邮箱验证: 2: 用户</span><br><span class="line">      完成注册: 5: 用户</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-ER-图-Entity-Relationship-Diagram"><a href="#8-ER-图-Entity-Relationship-Diagram" class="headerlink" title="8. ER 图 (Entity Relationship Diagram)"></a>8. ER 图 (Entity Relationship Diagram)</h2><pre class="mermaid">erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE_ITEM : contains
+    CUSTOMER }|..|{ DELIVERY_ADDRESS : uses</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE_ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY_ADDRESS : uses</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-Mermaid-小技巧"><a href="#9-Mermaid-小技巧" class="headerlink" title="9. Mermaid 小技巧"></a>9. Mermaid 小技巧</h2><ul>
+<li>使用 <code>style</code> 自定义节点颜色和样式</li>
+<li>箭头类型可选 <code>--&gt;</code>、<code>---</code>、<code>-.-&gt;</code> 等</li>
+<li>节点形状：<code>[]</code> 矩形，<code>()</code> 椭圆，<code>&#123;&#125;</code> 决策</li>
+<li>可以嵌套 subgraph</li>
 </ul>
 <hr>
-<h3 id="通用语法元素"><a href="#通用语法元素" class="headerlink" title="通用语法元素"></a>通用语法元素</h3><h2 id="注释-这是一个注释-换行-在节点或连接文本中，使用-或-n-具体取决于渲染器-。-特殊字符转义-如果你的文本中包含-Mermaid-语法中的特殊字符（如-等），你需要使用-HTML-实体编码或用双引号-“-包裹。"><a href="#注释-这是一个注释-换行-在节点或连接文本中，使用-或-n-具体取决于渲染器-。-特殊字符转义-如果你的文本中包含-Mermaid-语法中的特殊字符（如-等），你需要使用-HTML-实体编码或用双引号-“-包裹。" class="headerlink" title="-- 注释: %% 这是一个注释- 换行: 在节点或连接文本中，使用  或 \n (具体取决于渲染器)。- 特殊字符转义: 如果你的文本中包含 Mermaid 语法中的特殊字符（如 (, ), {, }, [, ] 等），你需要使用 HTML 实体编码或用双引号 “ 包裹。"></a>-<br>- <strong>注释</strong>: %% 这是一个注释<br>- <strong>换行</strong>: 在节点或连接文本中，使用 <br> 或 \n (具体取决于渲染器)。<br>- <strong>特殊字符转义</strong>: 如果你的文本中包含 Mermaid 语法中的特殊字符（如 (, ), {, }, [, ] 等），你需要使用 HTML 实体编码或用双引号 “ 包裹。</h2><ul>
-<li>A[“文本包含 [方括号]”]</li>
-<li><h2 id="样式设置"><a href="#样式设置" class="headerlink" title="样式设置:"></a><strong>样式设置</strong>:</h2><ul>
-<li>style ID fill:#color,stroke:#color,stroke-width:px,font-size:px,color:#color;</li>
-<li>linkStyle 链接序号 stroke:#color,stroke-width:px,fill:none; (链接序号从0开始)</li>
-</ul>
-</li>
-</ul>
-<h3 id="官方参考文档：https-mermaid-js-org"><a href="#官方参考文档：https-mermaid-js-org" class="headerlink" title="官方参考文档：https://mermaid.js.org/"></a>官方参考文档：<a href="https://www.google.com/url?sa=E&q=https://mermaid.js.org/">https://mermaid.js.org/</a></h3>]]></content>
+<p><strong>提示</strong>  </p>
+<ol>
+<li>在 Typora 中确保已启用 Mermaid 渲染（通常在 <code>偏好设置 -&gt; Markdown -&gt; 渲染</code> 中）。  </li>
+<li>所有 Mermaid 图都以 <code>mermaid</code> 包裹即可直接渲染。  </li>
+<li>可在 Typora 中直接编辑文本和 Mermaid 代码，实时预览效果。</li>
+</ol>
+<p><strong>参考文档</strong><br><a href="https://mermaid-js.github.io/mermaid/#/">Mermaid 官方文档</a></p>
+]]></content>
       <categories>
         <category>技术</category>
         <category>语法/格式</category>
       </categories>
       <tags>
         <tag>Mermaid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基础回溯算法</title>
+    <url>/2025/10/25/%E5%9F%BA%E7%A1%80%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<p>回溯法也可以叫做回溯搜索法，它是一种搜索的方式，回溯是递归的副产品，只要有递归就会有回溯。</p>
+<p>回溯算法并不是什么高效的算法，实质上就是不断穷举出所有的可能性，其中可以加一些剪枝操作以提高效率，但本质上还是穷举，所以并不会快到那哪里去</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="回溯法解决的问题"><a href="#回溯法解决的问题" class="headerlink" title="回溯法解决的问题"></a><strong>回溯法解决的问题</strong></h3><p>回溯法，一般可以解决如下几种问题：</p>
+<ul>
+<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
+<li>切割问题：一个字符串按一定规则有几种切割方式</li>
+<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
+<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
+<li>棋盘问题：N皇后，解数独等等</li>
+</ul>
+<p>回溯法的问题都可以抽象为树形结构来解决</p>
+<hr>
+<h3 id="回溯法的模板分为三部分："><a href="#回溯法的模板分为三部分：" class="headerlink" title="回溯法的模板分为三部分："></a><strong>回溯法的模板分为三部分：</strong></h3><p>1是函数传递的参数和返回值：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>通常没有返回值，而在写回溯函数的时候，参数不需要那么快定下来，可以在写的过程中知道具体逻辑，然后要调用哪些参数就填写哪些参数</p>
+<p>2是回溯的终止条件：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">    存放结果;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>遍历树形结构一定要有终止条件</p>
+<p>3是回溯搜索的遍历：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">	存放节点;</span><br><span class="line">	<span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">	回溯，撤销节点;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以下就是回溯搜索的完整模板</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">        存放结果;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">        存放节点;</span><br><span class="line">        <span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">        回溯，撤销节点;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p><em>下面举leetcode的几个题目为例</em></p>
+<p>77，216</p>
+<h3 id="leetcode77题为例"><a href="#leetcode77题为例" class="headerlink" title="leetcode77题为例:"></a><strong>leetcode77题为例</strong>:</h3><pre class="mermaid">graph TD
+
+A[1，2，3，4]
+A -->|取1| B[1]
+A -->|取2| C[2]
+A -->|取3| F[3]
+B -->|取2| D[1，2]
+B -->|取3| D1[1,3]
+B -->|取4| D2[1,4]
+C -->|取3| E[2,3]
+C -->|取4| E1[2,4]
+F -->|取4| G[3,4]</pre>
+
+<p>向右遍历，取过的数不再重复取，用startIndex来记录，纵向通过递归遍历叶子节点，找到符合条件的放入res中储存</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;path;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> k,<span class="type">int</span> startIndex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;=n-(k-path.<span class="built_in">size</span>())<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            path.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="built_in">backTracking</span>(n,k,i<span class="number">+1</span>);</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="type">int</span> n, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">backTracking</span>(n,k,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p><strong>剪枝</strong>：</p>
+<p>这里对可以剪枝的部分进行解释，因为最终要取到k个数，所以要<strong>保证列表中剩余元素（n-i） &gt;&#x3D; 所需需要的元素个数（k - path.size()）</strong>,也就是至多要从起始位置i&lt;&#x3D;n-（k - path.size()）+1开始遍历。至于+1可以举例，比如n&#x3D;5,那么就是1，2，3，4，5五个数，k取3，现在假如1已经在path.size()中，那么5-（3-1）&#x3D;3，再加上1就是i&lt;&#x3D;4，可以到4，也就是还可以入4，5两个数到path.size()，再往后连k&#x3D;3都凑不齐，直接剪枝掉。</p>
+<hr>
+<h3 id="leetcode216为例"><a href="#leetcode216为例" class="headerlink" title="leetcode216为例:"></a><strong>leetcode216为例</strong>:</h3><pre class="mermaid">graph TD
+
+A[1，2，3，4，5，6，7，8，9]
+A -->|取1| B[1]
+A -->|取2| C[2]
+A -->|取3| F[3]
+A --> H[...]
+B -->|取2| D[1，2]
+B -->|取3| D1[1,3]
+B -->|取4| D2[1,4]
+B --> D3[...]
+C -->|取3| E[2,3]
+C -->|取4| E1[2,4]
+C -->E2[...]
+F -->|取4| G[3,4]
+F --> G1[...]</pre>
+
+<p>大概的图为此，横向遍历1-9数字，而纵向通过遍历k次找到相加为n的叶子节点，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;path;</span><br><span class="line">    <span class="type">int</span> startIndex;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> startIndex,<span class="type">int</span> n,<span class="type">int</span> k,vector&lt;<span class="type">int</span>&gt;path)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">accumulate</span>(path.<span class="built_in">begin</span>(),path.<span class="built_in">end</span>(),<span class="number">0</span>)==n&amp;&amp;path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;=<span class="number">9</span>-(k-path.<span class="built_in">size</span>())<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            path.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">accumulate</span>(path.<span class="built_in">begin</span>(),path.<span class="built_in">end</span>(),<span class="number">0</span>)&gt;n)&#123;</span><br><span class="line">                path.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">backTracking</span>(i<span class="number">+1</span>,n,k,path);</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum3</span>(<span class="type">int</span> k, <span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">backTracking</span>(<span class="number">1</span>,n,k,path);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>这里的代码用了cpp的库函数accumulate()（时间复杂度o(n)）来计算，所以时间复杂度会更高点，可以用sum来代替（只有o(1)），这里的剪枝操作</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (sum &gt; targetSum) &#123; <span class="comment">// 剪枝操作</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>sum&gt;targetSum肯定就不符合了，那么也就没必要继续下去，直接剪枝，改善代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result; <span class="comment">// 存放结果集</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; path; <span class="comment">// 符合条件的结果</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> targetSum, <span class="type">int</span> k, <span class="type">int</span> sum, <span class="type">int</span> startIndex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; targetSum) &#123; <span class="comment">// 剪枝操作</span></span><br><span class="line">            <span class="keyword">return</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="built_in">size</span>() == k) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum == targetSum) result.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>; <span class="comment">// 如果path.size() == k 但sum != targetSum 直接返回</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = startIndex; i &lt;= <span class="number">9</span> - (k - path.<span class="built_in">size</span>()) + <span class="number">1</span>; i++) &#123; <span class="comment">// 剪枝</span></span><br><span class="line">            sum += i; <span class="comment">// 处理</span></span><br><span class="line">            path.<span class="built_in">push_back</span>(i); <span class="comment">// 处理</span></span><br><span class="line">            <span class="built_in">backtracking</span>(targetSum, k, sum, i + <span class="number">1</span>); <span class="comment">// 注意i+1调整startIndex</span></span><br><span class="line">            sum -= i; <span class="comment">// 回溯</span></span><br><span class="line">            path.<span class="built_in">pop_back</span>(); <span class="comment">// 回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum3</span>(<span class="type">int</span> k, <span class="type">int</span> n) &#123;</span><br><span class="line">        result.<span class="built_in">clear</span>(); <span class="comment">// 可以不加</span></span><br><span class="line">        path.<span class="built_in">clear</span>();   <span class="comment">// 可以不加</span></span><br><span class="line">        <span class="built_in">backtracking</span>(n, k, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>部分参考思路和代码来自《代码随想录》</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>回溯</tag>
       </tags>
   </entry>
   <entry>
@@ -245,101 +265,6 @@
         <tag>leetcode</tag>
         <tag>dp</tag>
         <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基础回溯算法</title>
-    <url>/2025/10/25/%E5%9F%BA%E7%A1%80%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<p>回溯法也可以叫做回溯搜索法，它是一种搜索的方式，回溯是递归的副产品，只要有递归就会有回溯。</p>
-<p>回溯算法并不是什么高效的算法，实质上就是不断穷举出所有的可能性，其中可以加一些剪枝操作以提高效率，但本质上还是穷举，所以并不会快到那哪里去</p>
-<span id="more"></span>
-
-<hr>
-<p><strong>回溯法解决的问题</strong></p>
-<p>回溯法，一般可以解决如下几种问题：</p>
-<ul>
-<li>组合问题：N个数里面按一定规则找出k个数的集合</li>
-<li>切割问题：一个字符串按一定规则有几种切割方式</li>
-<li>子集问题：一个N个数的集合里有多少符合条件的子集</li>
-<li>排列问题：N个数按一定规则全排列，有几种排列方式</li>
-<li>棋盘问题：N皇后，解数独等等</li>
-</ul>
-<p>回溯法的问题都可以抽象为树形结构来解决</p>
-<hr>
-<p><strong>回溯法的模板分为三部分：</strong></p>
-<p>1是函数传递的参数和返回值：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span></span><br></pre></td></tr></table></figure>
-
-<p>通常没有返回值，而在写回溯函数的时候，参数不需要那么快定下来，可以在写的过程中知道具体逻辑，然后要调用哪些参数就填写哪些参数</p>
-<p>2是回溯的终止条件：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">    存放结果;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>遍历树形结构一定要有终止条件</p>
-<p>3是回溯搜索的遍历：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">	存放节点;</span><br><span class="line">	<span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">	回溯，撤销节点;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以下就是回溯搜索的完整模板</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(参数)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (终止条件) &#123;</span><br><span class="line">        存放结果;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(循环条件)&#123;</span><br><span class="line">        存放节点;</span><br><span class="line">        <span class="built_in">backTracking</span>(传递的参数);<span class="comment">//递归调用</span></span><br><span class="line">        回溯，撤销节点;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h4 id="下面举leetcode的几个题目为例"><a href="#下面举leetcode的几个题目为例" class="headerlink" title="下面举leetcode的几个题目为例"></a>下面举leetcode的几个题目为例</h4><p>77，216</p>
-<p><strong>leetcode77题举例，以第一个样例为例</strong></p>
-<pre class="mermaid">graph TD
-
-A[1，2，3，4]
-A -->|取1| B[1]
-A -->|取2| C[2]
-A -->|取3| F[3]
-B -->|取2| D[1，2]
-B -->|取3| D1[1,3]
-B -->|取4| D2[1,4]
-C -->|取3| E[2,3]
-C -->|取4| E1[2,4]
-F -->|取4| G[3,4]</pre>
-
-<p>向右遍历，取过的数不再重复取，用startIndex来记录，纵向通过递归遍历叶子节点，找到符合条件的放入res中储存</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;path;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> k,<span class="type">int</span> startIndex)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;=n-(k-path.<span class="built_in">size</span>())<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            path.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="built_in">backTracking</span>(n,k,i<span class="number">+1</span>);</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combine</span>(<span class="type">int</span> n, <span class="type">int</span> k) &#123;</span><br><span class="line">        <span class="built_in">backTracking</span>(n,k,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p><strong>剪枝</strong>：</p>
-<p>这里对可以剪枝的部分进行解释，因为最终要取到k个数，所以要<strong>保证列表中剩余元素（n-i） &gt;&#x3D; 所需需要的元素个数（k - path.size()）</strong>,也就是至多要从起始位置i&lt;&#x3D;n-（k - path.size()）+1开始遍历。至于+1可以举例，比如n&#x3D;5,那么就是1，2，3，4，5五个数，k取3，现在假如1已经在path.size()中，那么5-（3-1）&#x3D;3，再加上1就是i&lt;&#x3D;4，可以到4，也就是还可以入4，5两个数到path.size()，再往后连k&#x3D;3都凑不齐，直接剪枝掉。</p>
-<hr>
-<p><strong>leetcode216举例</strong></p>
-<pre class="mermaid">graph TD
-
-A[1，2，3，4，5，6，7，8，9]
-A -->|取1| B[1]
-A -->|取2| C[2]
-A -->|取3| F[3]
-A --> H[...]
-B -->|取2| D[1，2]
-B -->|取3| D1[1,3]
-B -->|取4| D2[1,4]
-B --> D3[...]
-C -->|取3| E[2,3]
-C -->|取4| E1[2,4]
-C -->E2[...]
-F -->|取4| G[3,4]
-F --> G1[...]</pre>
-
-<p>大概的图为此，横向遍历1-9数字，而纵向通过遍历k次找到相加为n的叶子节点，代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt;res;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt;path;</span><br><span class="line">    <span class="type">int</span> startIndex;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> startIndex,<span class="type">int</span> n,<span class="type">int</span> k,vector&lt;<span class="type">int</span>&gt;path)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">accumulate</span>(path.<span class="built_in">begin</span>(),path.<span class="built_in">end</span>(),<span class="number">0</span>)==n&amp;&amp;path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(path.<span class="built_in">size</span>()==k)&#123;</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;=<span class="number">9</span>-(k-path.<span class="built_in">size</span>())<span class="number">+1</span>;i++)&#123;</span><br><span class="line">            path.<span class="built_in">push_back</span>(i);</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">accumulate</span>(path.<span class="built_in">begin</span>(),path.<span class="built_in">end</span>(),<span class="number">0</span>)&gt;n)&#123;</span><br><span class="line">                path.<span class="built_in">pop_back</span>();</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">backTracking</span>(i<span class="number">+1</span>,n,k,path);</span><br><span class="line">            path.<span class="built_in">pop_back</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum3</span>(<span class="type">int</span> k, <span class="type">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">backTracking</span>(<span class="number">1</span>,n,k,path);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>这里的代码用了cpp的库函数accumulate()（时间复杂度o(n)）来计算，所以时间复杂度会更高点，可以用sum来代替（只有o(1)），这里的剪枝操作</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> (sum &gt; targetSum) &#123; <span class="comment">// 剪枝操作</span></span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>sum&gt;targetSum肯定就不符合了，那么也就没必要继续下去，直接剪枝，改善代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; result; <span class="comment">// 存放结果集</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; path; <span class="comment">// 符合条件的结果</span></span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backtracking</span><span class="params">(<span class="type">int</span> targetSum, <span class="type">int</span> k, <span class="type">int</span> sum, <span class="type">int</span> startIndex)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (sum &gt; targetSum) &#123; <span class="comment">// 剪枝操作</span></span><br><span class="line">            <span class="keyword">return</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="built_in">size</span>() == k) &#123;</span><br><span class="line">            <span class="keyword">if</span> (sum == targetSum) result.<span class="built_in">push_back</span>(path);</span><br><span class="line">            <span class="keyword">return</span>; <span class="comment">// 如果path.size() == k 但sum != targetSum 直接返回</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = startIndex; i &lt;= <span class="number">9</span> - (k - path.<span class="built_in">size</span>()) + <span class="number">1</span>; i++) &#123; <span class="comment">// 剪枝</span></span><br><span class="line">            sum += i; <span class="comment">// 处理</span></span><br><span class="line">            path.<span class="built_in">push_back</span>(i); <span class="comment">// 处理</span></span><br><span class="line">            <span class="built_in">backtracking</span>(targetSum, k, sum, i + <span class="number">1</span>); <span class="comment">// 注意i+1调整startIndex</span></span><br><span class="line">            sum -= i; <span class="comment">// 回溯</span></span><br><span class="line">            path.<span class="built_in">pop_back</span>(); <span class="comment">// 回溯</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">combinationSum3</span>(<span class="type">int</span> k, <span class="type">int</span> n) &#123;</span><br><span class="line">        result.<span class="built_in">clear</span>(); <span class="comment">// 可以不加</span></span><br><span class="line">        path.<span class="built_in">clear</span>();   <span class="comment">// 可以不加</span></span><br><span class="line">        <span class="built_in">backtracking</span>(n, k, <span class="number">0</span>, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>部分参考思路和代码来自《代码随想录》</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>算法</tag>
-        <tag>回溯</tag>
       </tags>
   </entry>
 </search>
