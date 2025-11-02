@@ -1478,7 +1478,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #d0bf9e;
+    background: #ff3b03;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3193,34 +3193,6 @@ pre,
   padding: 1em;
   line-height: 1.5;
 }
-/* ======= 文章内图片美化 ======= */
-.post-body img {
-  border-radius: 12px; /* 图片圆角 */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12); /* 图片阴影 */
-  transition: all 0.3s ease;
-}
-/* 鼠标悬停在图片上时轻微放大 */
-.post-body img:hover {
-  transform: scale(1.02);
-}
-/* ======= 响应式视频容器 ======= */
-.video-container {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 宽高比 */
-  height: 0;
-  overflow: hidden;
-  max-width: 100%;
-  background: #000;
-  border-radius: 12px; /* 让视频容器也有圆角 */
-  margin: 20px 0;
-}
-.video-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 /* ======= 文章内链接样式优化 ======= */
 .post-body a {
   color: #0078ff; /* 链接颜色 */
@@ -3342,4 +3314,21 @@ pre,
 /* 调整整体间距 */
 .posts-collapse .collection-year {
   display: none;
+}
+/*视频 */
+.video-box {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+.video-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
 }
