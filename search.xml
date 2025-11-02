@@ -5,11 +5,7 @@
     <url>/2025/10/30/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E8%A7%86%E9%A2%91/</url>
     <content><![CDATA[<span id="more"></span>
 
-<h2 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h2><h3 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h3><div class="video-box">
-    <iframe width="100%" height="400" src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-</div>
-
-
+<h2 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h2><h3 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h3><iframe src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
 ]]></content>
       <categories>
@@ -170,19 +166,6 @@ D --> K((K))</pre>
       </tags>
   </entry>
   <entry>
-    <title>Markdown格式</title>
-    <url>/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/</url>
-    <content><![CDATA[<p>title: 我的文章标题<br>date: 2025-10-28<br>author: Me<br>tags: [Markdown, 教程]<br>categories: [笔记]<br>description: 文档简要描述</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>语法/格式</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Mermaid 语法总览</title>
     <url>/2025/10/28/Mermaid%20%E8%AF%AD%E6%B3%95%E6%80%BB%E8%A7%88/</url>
     <content><![CDATA[<hr>
@@ -297,6 +280,19 @@ D --> K((K))</pre>
       </categories>
       <tags>
         <tag>Mermaid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Markdown格式</title>
+    <url>/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/</url>
+    <content><![CDATA[<p>title: 我的文章标题<br>date: 2025-10-28<br>author: Me<br>tags: [Markdown, 教程]<br>categories: [笔记]<br>description: 文档简要描述</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>语法/格式</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
       </tags>
   </entry>
   <entry>
