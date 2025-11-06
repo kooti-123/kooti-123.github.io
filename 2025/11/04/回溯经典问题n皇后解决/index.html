@@ -23,27 +23,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"kooti-123.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.25.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"codeblock":{"theme":{"light":"default","dark":"stackoverflow-dark"},"prism":{"light":"prism","dark":"prism-dark"},"copy_button":{"enable":true,"style":null},"fold":{"enable":true,"height":500},"language":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":true,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":true,"motion":{"enable":true,"async":false,"duration":200,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js" defer></script>
 
-    <meta name="description" content="title: 我的文章标题date: 2025-10-28author: Metags: [Markdown, 教程]categories: [笔记]description: 文档简要描述">
+    <meta name="description" content="leetcode51 n皇后 我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Markdown格式">
-<meta property="og:url" content="https://kooti-123.github.io/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/index.html">
+<meta property="og:title" content="回溯经典问题n皇后解决">
+<meta property="og:url" content="https://kooti-123.github.io/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/index.html">
 <meta property="og:site_name" content="Blog">
-<meta property="og:description" content="title: 我的文章标题date: 2025-10-28author: Metags: [Markdown, 教程]categories: [笔记]description: 文档简要描述">
+<meta property="og:description" content="leetcode51 n皇后 我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-10-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-10-30T13:13:25.232Z">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png">
+<meta property="article:published_time" content="2025-11-03T16:00:00.000Z">
+<meta property="article:modified_time" content="2025-11-04T07:06:20.217Z">
 <meta property="article:author" content="LoveDream">
-<meta property="article:tag" content="Markdown">
+<meta property="article:tag" content="算法">
+<meta property="article:tag" content="回溯">
+<meta property="article:tag" content="技术">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png">
 
 
-<link rel="canonical" href="https://kooti-123.github.io/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/">
+<link rel="canonical" href="https://kooti-123.github.io/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/">
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kooti-123.github.io/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/","path":"2025/10/28/Markdown格式/","title":"Markdown格式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://kooti-123.github.io/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/","path":"2025/11/04/回溯经典问题n皇后解决/","title":"回溯经典问题n皇后解决"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Markdown格式 | Blog</title>
+<title>回溯经典问题n皇后解决 | Blog</title>
   
 
 
@@ -235,7 +239,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://kooti-123.github.io/2025/10/28/Markdown%E6%A0%BC%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="https://kooti-123.github.io/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -248,12 +252,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Markdown格式 | Blog">
+      <meta itemprop="name" content="回溯经典问题n皇后解决 | Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Markdown格式
+          回溯经典问题n皇后解决
         </h1>
 
         <div class="post-meta-container">
@@ -263,15 +267,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2025-10-28 00:00:00" itemprop="dateCreated datePublished" datetime="2025-10-28T00:00:00+08:00">2025-10-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-10-30 21:13:25" itemprop="dateModified" datetime="2025-10-30T21:13:25+08:00">2025-10-30</time>
+      <time title="创建时间：2025-11-04 00:00:00 / 修改时间：15:06:20" itemprop="dateCreated datePublished" datetime="2025-11-04T00:00:00+08:00">2025-11-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -283,7 +281,11 @@
         </span>
           ，
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%8A%80%E6%9C%AF/%E8%AF%AD%E6%B3%95-%E6%A0%BC%E5%BC%8F/" itemprop="url" rel="index"><span itemprop="name">语法/格式</span></a>
+          <a href="/categories/%E6%8A%80%E6%9C%AF/Code/" itemprop="url" rel="index"><span itemprop="name">Code</span></a>
+        </span>
+          ，
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF/Code/%E5%9B%9E%E6%BA%AF/" itemprop="url" rel="index"><span itemprop="name">回溯</span></a>
         </span>
     </span>
 
@@ -294,14 +296,14 @@
         <i class="far fa-file-word"></i>
       </span>
       <span class="post-meta-item-text">本文字数：</span>
-      <span>87</span>
+      <span>2.1k</span>
     </span>
     <span class="post-meta-item" title="阅读时长">
       <span class="post-meta-item-icon">
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>1 分钟</span>
+      <span>4 分钟</span>
     </span>
 </div>
 
@@ -311,7 +313,25 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>title: 我的文章标题<br>date: 2025-10-28<br>author: Me<br>tags: [Markdown, 教程]<br>categories: [笔记]<br>description: 文档简要描述</p>
+    <div class="post-body" itemprop="articleBody"><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/n-queens/description/">leetcode51 n皇后</a></p>
+<p>我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png" alt="n皇后问题"></p>
+<span id="more"></span>
+
+<p>而终止条件也显而易见当棋子的数量等于n的大小（row&#x3D;&#x3D;n）</p>
+<p>如图所示</p>
+<p>因此回溯算法就很容易得出</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在判断位置是否合法化上，我们可以采取剪枝操作降低时间复杂度</p>
+<p>1，回溯中采取的一行只能有一个棋子的操作，所以判断横向可以省略</p>
+<p>2，在回溯操作中，放棋子都是从上至下，因此下面的检查就可以省略，直接对上方和两个斜上方进行检查</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt;res;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">solveNQueens</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;string&gt;<span class="built_in">chessBoard</span>(n,<span class="built_in">string</span>(n,<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">        <span class="built_in">backTracking</span>(n,<span class="number">0</span>,chessBoard);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 
     </div>
 
@@ -321,20 +341,22 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Markdown/" rel="tag"><i class="fa fa-tag"></i># Markdown</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i># 算法</a>
+              <a href="/tags/%E5%9B%9E%E6%BA%AF/" rel="tag"><i class="fa fa-tag"></i># 回溯</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"><i class="fa fa-tag"></i># 技术</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2025/10/25/%E5%9F%BA%E7%A1%80%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/" rel="prev" title="基础回溯算法">
-                  <i class="fa fa-angle-left"></i> 基础回溯算法
+                <a href="/2025/10/30/%E6%B8%B8%E6%88%8F%E7%85%A7%E7%89%87/" rel="prev" title="游戏照片">
+                  <i class="fa fa-angle-left"></i> 游戏照片
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/10/28/Mermaid%20%E8%AF%AD%E6%B3%95%E6%80%BB%E8%A7%88/" rel="next" title="Mermaid 语法总览">
-                  Mermaid 语法总览 <i class="fa fa-angle-right"></i>
+                <a href="/2025/11/06/text/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

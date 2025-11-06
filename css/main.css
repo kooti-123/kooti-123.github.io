@@ -1478,7 +1478,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #415d5c;
+    background: #74df93;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3132,7 +3132,7 @@ header.header {
   background: #dcdcdc; /* 悬停时背景色 (蓝色) */
   border-color: #dcdcdc; /* 悬停时边框颜色 */
   transform: translateY(-2px); /* 轻微上浮效果 */
-  box-shadow: 0 4px 10px rgba(0,120,255,0.2); /* 添加阴影 */
+  box-shadow: 0 4px 10px rgba(0,234,255,0.2); /* 添加阴影 */
 }
 /*
  * =================================================

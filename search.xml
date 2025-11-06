@@ -1,21 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>杀戮尖塔视频</title>
-    <url>/2025/10/30/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<span id="more"></span>
+    <title></title>
+    <url>/2025/11/06/text/</url>
+    <content><![CDATA[<p>text11</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>回溯经典问题n皇后解决</title>
+    <url>/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p><a href="https://leetcode.cn/problems/n-queens/description/">leetcode51 n皇后</a></p>
+<p>我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层</p>
+<p><img src="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png" alt="n皇后问题"></p>
+<span id="more"></span>
 
-<h2 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h2><h3 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h3><iframe src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
+<p>而终止条件也显而易见当棋子的数量等于n的大小（row&#x3D;&#x3D;n）</p>
+<p>如图所示</p>
+<p>因此回溯算法就很容易得出</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在判断位置是否合法化上，我们可以采取剪枝操作降低时间复杂度</p>
+<p>1，回溯中采取的一行只能有一个棋子的操作，所以判断横向可以省略</p>
+<p>2，在回溯操作中，放棋子都是从上至下，因此下面的检查就可以省略，直接对上方和两个斜上方进行检查</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt;res;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">solveNQueens</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;string&gt;<span class="built_in">chessBoard</span>(n,<span class="built_in">string</span>(n,<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">        <span class="built_in">backTracking</span>(n,<span class="number">0</span>,chessBoard);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 
 ]]></content>
       <categories>
-        <category>视频</category>
-        <category>游戏</category>
-        <category>杀戮尖塔</category>
+        <category>技术</category>
+        <category>Code</category>
+        <category>回溯</category>
       </categories>
       <tags>
-        <tag>杀戮尖塔</tag>
-        <tag>游戏</tag>
+        <tag>算法</tag>
+        <tag>回溯</tag>
+        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -68,6 +90,24 @@
       <tags>
         <tag>游戏</tag>
         <tag>照片</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>杀戮尖塔视频</title>
+    <url>/2025/10/30/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<span id="more"></span>
+
+<h2 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h2><h3 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h3><iframe src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
+
+]]></content>
+      <categories>
+        <category>视频</category>
+        <category>游戏</category>
+        <category>杀戮尖塔</category>
+      </categories>
+      <tags>
+        <tag>游戏</tag>
+        <tag>杀戮尖塔</tag>
       </tags>
   </entry>
   <entry>
@@ -159,10 +199,12 @@ D --> K((K))</pre>
       <categories>
         <category>技术</category>
         <category>Code</category>
+        <category>回溯</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>算法，回溯</tag>
+        <tag>算法</tag>
+        <tag>回溯</tag>
       </tags>
   </entry>
   <entry>
@@ -380,6 +422,7 @@ F --> G1[...]</pre>
       <categories>
         <category>技术</category>
         <category>Code</category>
+        <category>回溯</category>
       </categories>
       <tags>
         <tag>leetcode</tag>
@@ -424,8 +467,8 @@ F --> G1[...]</pre>
       </categories>
       <tags>
         <tag>leetcode</tag>
-        <tag>dp</tag>
         <tag>算法</tag>
+        <tag>dp</tag>
       </tags>
   </entry>
 </search>
