@@ -31,7 +31,7 @@
 <meta property="og:description" content="在刷回溯算法时有时对树的遍历层次不够了解清晰，经常对continue，break，return使用错误，特写一篇来对此进行总结分析">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-10-28T16:00:00.000Z">
-<meta property="article:modified_time" content="2025-11-04T07:05:52.508Z">
+<meta property="article:modified_time" content="2025-11-17T09:26:30.362Z">
 <meta property="article:author" content="LoveDream">
 <meta property="article:tag" content="leetcode">
 <meta property="article:tag" content="算法">
@@ -177,7 +177,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode491break%E4%BD%BF%E7%94%A8%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">leetcode491break使用错误:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AF%B9%E5%8E%BB%E9%87%8Dcontinue%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">对去重continue的理解：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode93%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8return"><span class="nav-number">3.</span> <span class="nav-text">leetcode93错误使用return:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8continue%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">使用continue：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8break%EF%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">使用break：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8return%EF%BC%9A"><span class="nav-number">5.3.</span> <span class="nav-text">使用return：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%97%AE%E9%A2%98%E4%B8%AD%E7%9A%84%E6%A0%91%E5%BD%A2%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">具体问题中的树形分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode491break%E4%BD%BF%E7%94%A8%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">leetcode491break使用错误：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AF%B9%E5%8E%BB%E9%87%8Dcontinue%E7%9A%84%E7%90%86%E8%A7%A3%EF%BC%9A-1"><span class="nav-number">6.2.</span> <span class="nav-text">对去重continue的理解：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#leetcode93%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8return-1"><span class="nav-number">6.3.</span> <span class="nav-text">leetcode93错误使用return:</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#break%E4%BD%BF%E7%94%A8%E9%94%99%E8%AF%AF"><span class="nav-number">1.</span> <span class="nav-text">break使用错误:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%BB%E9%87%8Dcontinue%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">去重continue：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8return"><span class="nav-number">3.</span> <span class="nav-text">错误使用return:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%EF%BC%9A"><span class="nav-number">5.</span> <span class="nav-text">举例：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8continue%EF%BC%9A"><span class="nav-number">5.1.</span> <span class="nav-text">使用continue：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8break%EF%BC%9A"><span class="nav-number">5.2.</span> <span class="nav-text">使用break：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8return%EF%BC%9A"><span class="nav-number">5.3.</span> <span class="nav-text">使用return：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B7%E4%BD%93%E9%97%AE%E9%A2%98%E4%B8%AD%E7%9A%84%E6%A0%91%E5%BD%A2%E5%88%86%E6%9E%90"><span class="nav-number">6.</span> <span class="nav-text">具体问题中的树形分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#break%E4%BD%BF%E7%94%A8%E9%94%99%E8%AF%AF%EF%BC%9A"><span class="nav-number">6.1.</span> <span class="nav-text">break使用错误：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8E%BB%E9%87%8Dcontinue%EF%BC%9A-1"><span class="nav-number">6.2.</span> <span class="nav-text">去重continue：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E4%BD%BF%E7%94%A8return-1"><span class="nav-number">6.3.</span> <span class="nav-text">错误使用return:</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -192,18 +192,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -274,7 +274,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-11-04 15:05:52" itemprop="dateModified" datetime="2025-11-04T15:05:52+08:00">2025-11-04</time>
+      <time title="修改时间：2025-11-17 17:26:30" itemprop="dateModified" datetime="2025-11-17T17:26:30+08:00">2025-11-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -308,7 +308,7 @@
         <i class="far fa-clock"></i>
       </span>
       <span class="post-meta-item-text">阅读时长 &asymp;</span>
-      <span>4 分钟</span>
+      <span>3 分钟</span>
     </span>
 </div>
 
@@ -319,14 +319,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h3 id="leetcode491break使用错误"><a href="#leetcode491break使用错误" class="headerlink" title="leetcode491break使用错误:"></a>leetcode491break使用错误:</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//使用错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><h3 id="break使用错误"><a href="#break使用错误" class="headerlink" title="break使用错误:"></a>break使用错误:</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/non-decreasing-subsequences/description/">leetcode491</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//使用错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>正确代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="对去重continue的理解："><a href="#对去重continue的理解：" class="headerlink" title="对去重continue的理解："></a>对去重continue的理解：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&gt;startIndex&amp;&amp;nums[i<span class="number">-1</span>]==nums[i])<span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="去重continue："><a href="#去重continue：" class="headerlink" title="去重continue："></a>去重continue：</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&gt;startIndex&amp;&amp;nums[i<span class="number">-1</span>]==nums[i])<span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
 
-<h3 id="leetcode93错误使用return"><a href="#leetcode93错误使用return" class="headerlink" title="leetcode93错误使用return:"></a>leetcode93错误使用return:</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="错误使用return"><a href="#错误使用return" class="headerlink" title="错误使用return:"></a>错误使用return:</h3><p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/restore-ip-addresses/description/">leetcode93</a></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>正确代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -383,9 +385,9 @@ D --> K((K))</pre>
 <h4 id="使用continue："><a href="#使用continue：" class="headerlink" title="使用continue："></a>使用continue：</h4><p>只会跳过F然后执行G，后面CD的子孩子也正常执行</p>
 <h4 id="使用break："><a href="#使用break：" class="headerlink" title="使用break："></a>使用break：</h4><p>跳过F及后面的同级节点也就是G，后面CD的子孩子也正常执行</p>
 <h4 id="使用return："><a href="#使用return：" class="headerlink" title="使用return："></a>使用return：</h4><p> F的子树、G、以及B的后续兄弟C和D全部跳过</p>
-<h3 id="具体问题中的树形分析"><a href="#具体问题中的树形分析" class="headerlink" title="具体问题中的树形分析"></a>具体问题中的树形分析</h3><h4 id="leetcode491break使用错误："><a href="#leetcode491break使用错误：" class="headerlink" title="leetcode491break使用错误："></a>leetcode491break使用错误：</h4><p>根据树形结构选取，原始数组: [4,6,7,7]，4-6，4-6-7，4-7，4-7-7。假如使用4-6-7错误并且break，那么后面的4-7，4-7-7都会被舍弃掉，可以画树形图更好理解。</p>
-<h4 id="对去重continue的理解：-1"><a href="#对去重continue的理解：-1" class="headerlink" title="对去重continue的理解："></a>对去重continue的理解：</h4><p>和上面一样理解，遇到重复的continue掉然后继续执行下一个，比如: [4,6,7,7,8]，4-6，4-6-7[2]，这个时候下一个是7[3]，continue掉,到4-6-8。</p>
-<h4 id="leetcode93错误使用return-1"><a href="#leetcode93错误使用return-1" class="headerlink" title="leetcode93错误使用return:"></a>leetcode93错误使用return:</h4><p>字符串: “25525511135”</p>
+<h3 id="具体问题中的树形分析"><a href="#具体问题中的树形分析" class="headerlink" title="具体问题中的树形分析"></a>具体问题中的树形分析</h3><h4 id="break使用错误："><a href="#break使用错误：" class="headerlink" title="break使用错误："></a>break使用错误：</h4><p>根据树形结构选取，原始数组: [4,6,7,7]，4-6，4-6-7，4-7，4-7-7。假如使用4-6-7错误并且break，那么后面的4-7，4-7-7都会被舍弃掉，可以画树形图更好理解。</p>
+<h4 id="去重continue：-1"><a href="#去重continue：-1" class="headerlink" title="去重continue："></a>去重continue：</h4><p>和上面一样理解，遇到重复的continue掉然后继续执行下一个，比如: [4,6,7,7,8]，4-6，4-6-7[2]，这个时候下一个是7[3]，continue掉,到4-6-8。</p>
+<h4 id="错误使用return-1"><a href="#错误使用return-1" class="headerlink" title="错误使用return:"></a>错误使用return:</h4><p>字符串: “25525511135”</p>
 <pre class="mermaid">graph TD
     start((start))
     a1((2))
@@ -424,8 +426,8 @@ D --> K((K))</pre>
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2025/10/30/%E6%9D%80%E6%88%AE%E5%B0%96%E5%A1%94%E8%A7%86%E9%A2%91/" rel="next" title="杀戮尖塔视频">
-                  杀戮尖塔视频 <i class="fa fa-angle-right"></i>
+                <a href="/2025/10/30/%E6%B8%B8%E6%88%8F%E7%85%A7%E7%89%87/" rel="next" title="游戏照片">
+                  游戏照片 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>
@@ -457,13 +459,13 @@ D --> K((K))</pre>
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-line"></i>
     </span>
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">14k</span>
   </span>
   <span class="post-meta-item">
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">20 分钟</span>
+    <span title="站点阅读时长">26 分钟</span>
   </span>
 </div>
 
