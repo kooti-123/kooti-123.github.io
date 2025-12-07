@@ -1,9 +1,32 @@
 /**
  * 点击粒子效果
  * 在页面点击时产生粒子爆炸效果
+ * 性能优化版本：添加节流和优化动画循环
  */
 (function() {
   'use strict';
+
+  // 节流函数 - 限制函数执行频率
+  function throttle(func, wait) {
+    let timeout;
+    return function(...args) {
+      if (!timeout) {
+        timeout = setTimeout(() => {
+          timeout = null;
+          func.apply(this, args);
+        }, wait);
+      }
+    };
+  }
+
+  // 防抖函数 - 延迟执行，只执行最后一次
+  function debounce(func, wait) {
+    let timeout;
+    return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
 
   // 粒子配置
   const config = {
@@ -16,7 +39,8 @@
       '#a29bfe', '#fd79a8', '#fdcb6e', '#e17055'
     ],
     duration: 1000,           // 粒子持续时间（毫秒）
-    gravity: 0.3              // 重力效果
+    gravity: 0.3,             // 重力效果
+    throttleDelay: 100        // 节流延迟（毫秒）
   };
 
   // 创建画布
@@ -28,13 +52,14 @@
   let particles = [];
   let animationId = null;
 
-  // 设置画布大小
+  // 设置画布大小（使用防抖优化）
   function resizeCanvas() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  // 使用防抖优化窗口大小调整事件
+  window.addEventListener('resize', debounce(resizeCanvas, 250));
 
   // 粒子类
   class Particle {
@@ -75,18 +100,29 @@
     }
   }
 
-  // 动画循环
+  // 动画循环（性能优化版本）
   function animate() {
+    // 如果没有粒子，停止动画
+    if (particles.length === 0) {
+      animationId = null;
+      return;
+    }
+
+    // 使用 clearRect 清除画布
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
-    particles = particles.filter(particle => {
-      const alive = particle.update();
-      if (alive) {
+    // 批量更新和绘制粒子
+    const aliveParticles = [];
+    for (let i = 0; i < particles.length; i++) {
+      const particle = particles[i];
+      if (particle.update()) {
         particle.draw();
+        aliveParticles.push(particle);
       }
-      return alive;
-    });
+    }
+    particles = aliveParticles;
 
+    // 继续动画循环
     if (particles.length > 0) {
       animationId = requestAnimationFrame(animate);
     } else {
@@ -94,43 +130,66 @@
     }
   }
 
-  // 点击事件处理
-  document.addEventListener('click', function(e) {
-    // 排除在代码块、按钮等元素上的点击
-    const target = e.target;
-    if (target.tagName === 'CODE' || 
-        target.tagName === 'PRE' || 
-        target.closest('pre') ||
-        target.closest('button') ||
-        target.closest('.copy-btn')) {
+  // 检查是否应该创建粒子（排除特定元素）
+  function shouldCreateParticles(target) {
+    if (!target) return false;
+    
+    // 排除列表
+    const excludeSelectors = [
+      'CODE', 'PRE', 'BUTTON', 'A', 'INPUT', 'TEXTAREA', 'SELECT'
+    ];
+    
+    // 检查标签名
+    if (excludeSelectors.includes(target.tagName)) {
+      return false;
+    }
+    
+    // 检查是否在排除的容器内
+    const excludeContainers = ['pre', 'code', 'button', '.copy-btn', 'a'];
+    for (const selector of excludeContainers) {
+      if (target.closest && target.closest(selector)) {
+        return false;
+      }
+    }
+    
+    return true;
+  }
+
+  // 处理粒子创建（统一处理点击和触摸）
+  function handleParticleCreation(x, y, target) {
+    if (!shouldCreateParticles(target)) {
       return;
     }
 
-    createParticles(e.clientX, e.clientY);
+    createParticles(x, y);
     
+    // 启动动画循环（如果未运行）
     if (!animationId) {
       animationId = requestAnimationFrame(animate);
     }
-  });
+  }
 
-  // 移动端触摸事件
-  document.addEventListener('touchstart', function(e) {
+  // 点击事件处理（使用节流优化）
+  document.addEventListener('click', throttle(function(e) {
+    handleParticleCreation(e.clientX, e.clientY, e.target);
+  }, config.throttleDelay), { passive: true });
+
+  // 移动端触摸事件（使用节流优化）
+  document.addEventListener('touchstart', throttle(function(e) {
     const touch = e.touches[0];
     if (touch) {
-      const target = e.target;
-      if (target.tagName === 'CODE' || 
-          target.tagName === 'PRE' || 
-          target.closest('pre') ||
-          target.closest('button') ||
-          target.closest('.copy-btn')) {
-        return;
-      }
-      
-      createParticles(touch.clientX, touch.clientY);
-      
-      if (!animationId) {
-        animationId = requestAnimationFrame(animate);
-      }
+      handleParticleCreation(touch.clientX, touch.clientY, e.target);
+    }
+  }, config.throttleDelay), { passive: true });
+
+  // 页面可见性优化：当页面不可见时暂停动画
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden && animationId) {
+      // 页面隐藏时，可以暂停动画以节省资源
+      // 但为了更好的用户体验，我们继续运行动画
+      // 如果需要更激进的优化，可以取消注释下面的代码
+      // cancelAnimationFrame(animationId);
+      // animationId = null;
     }
   });
 })();

@@ -1478,7 +1478,7 @@ pre code {
     vertical-align: middle;
   }
   .links-of-author a::before {
-    background: #fbffb9;
+    background: #ffff32;
     display: inline-block;
     margin-right: 3px;
     transform: translateY(-2px);
@@ -3322,4 +3322,181 @@ pre,
   aspect-ratio: 16/9;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+/* ===== 标签页（/tags/）美化 ===== */
+/* 标签云容器 */
+.tag-cloud {
+  text-align: center;
+  padding: 2rem 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+@media (max-width: 767px) {
+  .tag-cloud {
+    padding: 1.5rem 0.5rem;
+  }
+}
+/* 标签云标题 */
+.tag-cloud-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+  padding-bottom: 1rem;
+}
+.tag-cloud-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #4a90e2, #778beb);
+  border-radius: 2px;
+}
+@media (max-width: 767px) {
+  .tag-cloud-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+  }
+}
+/* 标签云标签容器 */
+.tag-cloud-tags {
+  display: flex;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  padding: 1.5rem 0;
+}
+/* 标签云中的标签样式优化 */
+.tag-cloud a {
+  margin: 0 !important;
+  padding: 10px 18px;
+  font-size: 0.95em;
+  font-weight: 500;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.tag-cloud a:hover {
+  box-shadow: 0 6px 16px rgba(74,144,226,0.3);
+  transform: translateY(-3px) scale(1.05);
+}
+/* 深色模式下的标签云标题 */
+[data-theme='dark'] .tag-cloud-title {
+  color: #e0e0e0;
+}
+[data-theme='dark'] .tag-cloud-title::after {
+  background: linear-gradient(90deg, #6c5ce7, #a29bfe);
+}
+/* ===== 分页器美化 ===== */
+.pagination {
+  margin: 60px auto 40px;
+  padding: 0;
+  text-align: center;
+  border-top: none !important;
+  max-width: 800px;
+/* 分页按钮基础样式 */
+/* 当前页样式 */
+/* 省略号样式 */
+/* 移动端适配 */
+}
+.pagination .prev,
+.pagination .next,
+.pagination .page-number {
+  display: inline-block;
+  min-width: 40px;
+  height: 40px;
+  line-height: 40px;
+  margin: 0 6px;
+  padding: 0 16px;
+  background: #fff;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-weight: 500;
+  font-size: 0.95em;
+}
+.pagination .prev:hover,
+.pagination .next:hover,
+.pagination .page-number:hover {
+  background: #4a90e2;
+  color: #fff;
+  border-color: #4a90e2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(74,144,226,0.3);
+}
+.pagination .page-number.current {
+  background: linear-gradient(135deg, #4a90e2, #778beb);
+  color: #fff;
+  border-color: #4a90e2;
+  box-shadow: 0 4px 12px rgba(74,144,226,0.4);
+  font-weight: 600;
+}
+.pagination .page-number.current:hover {
+  background: linear-gradient(135deg, #3a7bc8, #6780d8);
+  transform: translateY(-2px) scale(1.05);
+}
+.pagination .space {
+  margin: 0 4px;
+  padding: 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #999;
+  font-weight: 600;
+}
+.pagination .space:hover {
+  transform: none;
+  background: transparent;
+}
+@media (max-width: 767px) {
+  .pagination {
+    margin: 40px auto 30px;
+  }
+  .pagination .prev,
+  .pagination .next,
+  .pagination .page-number {
+    min-width: 36px;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 12px;
+    margin: 0 4px;
+    font-size: 0.9em;
+  }
+}
+/* 深色模式下的分页器 */
+[data-theme='dark'] .pagination .prev,
+[data-theme='dark'] .pagination .next,
+[data-theme='dark'] .pagination .page-number {
+  background: #2a2a2a;
+  color: #bbb;
+  border-color: #444;
+}
+[data-theme='dark'] .pagination .prev:hover,
+[data-theme='dark'] .pagination .next:hover,
+[data-theme='dark'] .pagination .page-number:hover {
+  background: #6c5ce7;
+  color: #fff;
+  border-color: #6c5ce7;
+  box-shadow: 0 4px 12px rgba(108,92,231,0.3);
+}
+[data-theme='dark'] .pagination .page-number.current {
+  background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+  border-color: #6c5ce7;
+  box-shadow: 0 4px 12px rgba(108,92,231,0.4);
+}
+[data-theme='dark'] .pagination .page-number.current:hover {
+  background: linear-gradient(135deg, #5a4cd6, #9280ed);
+}
+[data-theme='dark'] .pagination .space {
+  color: #666;
 }
