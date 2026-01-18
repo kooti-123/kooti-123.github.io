@@ -35,8 +35,8 @@
 <meta property="article:modified_time" content="2025-11-17T09:28:58.139Z">
 <meta property="article:author" content="LoveDream">
 <meta property="article:tag" content="leetcode">
-<meta property="article:tag" content="算法">
 <meta property="article:tag" content="dp">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
 
 
@@ -355,8 +355,8 @@
     <footer class="post-footer">
           <div class="post-tags">
               <a href="/tags/leetcode/" rel="tag"><i class="fa fa-tag"></i># leetcode</a>
-              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i># 算法</a>
               <a href="/tags/dp/" rel="tag"><i class="fa fa-tag"></i># dp</a>
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"><i class="fa fa-tag"></i># 算法</a>
           </div>
 
         
@@ -456,6 +456,29 @@ setInterval("createtime()",250);
 
 
   <script src="/js/click-particles.js" defer></script>
+
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化 Mermaid
+  function initMermaid() {
+    if (typeof mermaid !== 'undefined') {
+      // 重新初始化 Mermaid
+      mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+  }
+  
+  // 页面首次加载时初始化
+  initMermaid();
+  
+  // PJAX 页面切换后重新初始化
+  document.addEventListener('pjax:complete', function() {
+    initMermaid();
+  });
+});
+</script>
 
 
 

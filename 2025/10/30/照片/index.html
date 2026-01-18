@@ -584,5 +584,28 @@ setInterval("createtime()",250);
 
 
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 初始化 Mermaid
+  function initMermaid() {
+    if (typeof mermaid !== 'undefined') {
+      // 重新初始化 Mermaid
+      mermaid.init(undefined, document.querySelectorAll('.mermaid'));
+    }
+  }
+  
+  // 页面首次加载时初始化
+  initMermaid();
+  
+  // PJAX 页面切换后重新初始化
+  document.addEventListener('pjax:complete', function() {
+    initMermaid();
+  });
+});
+</script>
+
+
+
 </body>
 </html>
