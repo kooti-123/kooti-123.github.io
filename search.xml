@@ -1,6 +1,295 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>入门动态规划(Dynamic Programming)问题</title>
+    <url>/2025/10/21/%E5%85%A5%E9%97%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92(Dynamic%20Programming)%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94leetcode%2070(%E7%88%AC%E6%A5%BC%E6%A2%AF)%E5%92%8C746(%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF)%E7%9A%84%E7%AE%80%E5%8D%95dp%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>首先动态规划和贪心的区别：贪心的核心就是从局部最优推到整体最优，和上一个状态没有关系，而动态规划顾名思义是动态的问题，比如经典的背包问题，每次装入时要考虑到背包的容量，而容量的大小通常由上一个装入背包的大小影响，所以贪心解决不了动态规划</p>
+<span id="more"></span>
+
+<h3 id="在动态规划问题上，我们要先考虑好5步："><a href="#在动态规划问题上，我们要先考虑好5步：" class="headerlink" title="在动态规划问题上，我们要先考虑好5步："></a>在动态规划问题上，我们要先考虑好5步：</h3><p>1：确定dp数组及下标含义</p>
+<p>2：确定递推公式</p>
+<p>3：dp数组的初始化</p>
+<p>4：数组的遍历顺序</p>
+<p>5：举例推导dp数组</p>
+<h3 id="以leetcode70为例："><a href="#以leetcode70为例：" class="headerlink" title="以leetcode70为例："></a>以leetcode70为例：</h3><p>1，确定dp数组：dp[i]数组确定为到达i阶有多少种方案;</p>
+<p>2，递推公式：我们到达第i阶是怎么到达的，只有两种方案，一个是从i-1走1步，另一个是从i-2走2步，所以到达第i阶就是这两个的总和相加，而到i-1的方案总数为dp[i-1],同理到达i-2的数量为dp[i-2]；所以推导出递推公式为dp[i]&#x3D;dp[i-1]+dp[i-2];</p>
+<p>3，初始化：dp[1]&#x3D;1,dp[2]&#x3D;2;</p>
+<p>4，数组遍历顺序：因为是由前两个的阶梯数推导出后第i个阶梯的方案，则从前往后遍历；</p>
+<p>5，可以自己举例子 (n&#x3D;3有三种)</p>
+<p>从而我们便可以得出代码</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">climbStairs</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="leetcode746："><a href="#leetcode746：" class="headerlink" title="leetcode746："></a><a href="https://leetcode.cn/problems/min-cost-climbing-stairs/description/">leetcode746</a>：</h3><p>1，确定dp数组：dp[i]数组确定为到达i阶需要花费的总的钱数;</p>
+<p>2，数组遍历顺序：这里我写这道题时先考虑的遍历顺序，由题可知，dp[n]&#x3D;0,也就是到达屋顶，所以我进行反向遍历，那么最后的第1层和第0层只要比较两个的最小值就可以知道从哪个点出发花费最小；</p>
+<p>3，递推公式：爬到第i层我们的最小花费怎么求？同70我们也可以知道i的花费也由i-1和i-2决定，毕竟dp[i-1],dp[i-2]分别是到达第i-1层的最小花费和到达第i-2层的最小花费，所以我们找到其中的最小花费，则dp[i]&#x3D;cost[i]+min(dp[i-1],dp[i-2]);</p>
+<p>4，初始化：dp[n]&#x3D;0,dp[n-1]&#x3D;cost[n-1];</p>
+<p>5，举例子：略</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>()] = <span class="number">0</span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>() - <span class="number">1</span>] = cost[cost.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = cost.<span class="built_in">size</span>() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            dp[i] = cost[i] + <span class="built_in">min</span>(dp[i + <span class="number">1</span>], dp[i + <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(dp[<span class="number">0</span>], dp[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>不过正向和方向遍历也没什么区别</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 默认第一步都是不花费体力的</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= cost.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>] + cost[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + cost[i - <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[cost.<span class="built_in">size</span>()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>Code</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>dp</tag>
+        <tag>算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mermaid 语法总览</title>
+    <url>/2025/10/28/Mermaid%20%E8%AF%AD%E6%B3%95%E6%80%BB%E8%A7%88/</url>
+    <content><![CDATA[<hr>
+<h2 id="1-流程图-Flowchart"><a href="#1-流程图-Flowchart" class="headerlink" title="1. 流程图 (Flowchart)"></a>1. 流程图 (Flowchart)</h2><pre class="mermaid">flowchart TD
+    A[开始] --> B{判断条件}
+    B -->|是| C[执行操作1]
+    B -->|否| D[执行操作2]
+    C --> E[结束]
+    D --> E</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A[开始] --&gt; B&#123;判断条件&#125;</span><br><span class="line">    B --&gt;|是| C[执行操作1]</span><br><span class="line">    B --&gt;|否| D[执行操作2]</span><br><span class="line">    C --&gt; E[结束]</span><br><span class="line">    D --&gt; E</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="2-时序图-Sequence-Diagram"><a href="#2-时序图-Sequence-Diagram" class="headerlink" title="2. 时序图 (Sequence Diagram)"></a>2. 时序图 (Sequence Diagram)</h2><pre class="mermaid">sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: 你好，Bob
+    Bob-->>Alice: 你好，Alice
+    Alice->>Bob: 你在做什么？</pre>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant Alice</span><br><span class="line">    participant Bob</span><br><span class="line">    Alice-&gt;&gt;Bob: 你好，Bob</span><br><span class="line">    Bob--&gt;&gt;Alice: 你好，Alice</span><br><span class="line">    Alice-&gt;&gt;Bob: 你在做什么？</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-甘特图-Gantt-Chart"><a href="#3-甘特图-Gantt-Chart" class="headerlink" title="3. 甘特图 (Gantt Chart)"></a>3. 甘特图 (Gantt Chart)</h2><pre class="mermaid">gantt
+    title 项目进度
+    dateFormat  YYYY-MM-DD
+    section 设计
+    需求分析       :a1, 2025-10-01, 7d
+    原型设计       :after a1, 5d
+    section 开发
+    前端开发       :2025-10-10, 10d
+    后端开发       :2025-10-12, 12d</pre>
+
+
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title 项目进度</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section 设计</span><br><span class="line">    需求分析       :a1, 2025-10-01, 7d</span><br><span class="line">    原型设计       :after a1, 5d</span><br><span class="line">    section 开发</span><br><span class="line">    前端开发       :2025-10-10, 10d</span><br><span class="line">    后端开发       :2025-10-12, 12d</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-类图-Class-Diagram"><a href="#4-类图-Class-Diagram" class="headerlink" title="4. 类图 (Class Diagram)"></a>4. 类图 (Class Diagram)</h2><pre class="mermaid">classDiagram
+    class Animal {
+        +String name
+        +eat()
+    }
+    class Dog {
+        +bark()
+    }
+    Animal <|-- Dog</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    class Animal &#123;</span><br><span class="line">        +String name</span><br><span class="line">        +eat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Dog &#123;</span><br><span class="line">        +bark()</span><br><span class="line">    &#125;</span><br><span class="line">    Animal &lt;|-- Dog</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-状态图-State-Diagram"><a href="#5-状态图-State-Diagram" class="headerlink" title="5. 状态图 (State Diagram)"></a>5. 状态图 (State Diagram)</h2><pre class="mermaid">stateDiagram-v2
+    [*] --> 空闲
+    空闲 --> 工作
+    工作 --> 空闲
+    工作 --> 停止
+    停止 --> [*]</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">    [*] --&gt; 空闲</span><br><span class="line">    空闲 --&gt; 工作</span><br><span class="line">    工作 --&gt; 空闲</span><br><span class="line">    工作 --&gt; 停止</span><br><span class="line">    停止 --&gt; [*]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-饼图-Pie-Chart"><a href="#6-饼图-Pie-Chart" class="headerlink" title="6. 饼图 (Pie Chart)"></a>6. 饼图 (Pie Chart)</h2><pre class="mermaid">pie
+    title 网站流量来源
+    "直接访问" : 45
+    "搜索引擎" : 30
+    "社交媒体" : 25</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pie</span><br><span class="line">    title 网站流量来源</span><br><span class="line">    &quot;直接访问&quot; : 45</span><br><span class="line">    &quot;搜索引擎&quot; : 30</span><br><span class="line">    &quot;社交媒体&quot; : 25</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="7-用户旅程图-Journey-Diagram"><a href="#7-用户旅程图-Journey-Diagram" class="headerlink" title="7. 用户旅程图 (Journey Diagram)"></a>7. 用户旅程图 (Journey Diagram)</h2><pre class="mermaid">journey
+    title 用户注册流程
+    section 注册
+      访问页面: 5: 用户
+      填写表单: 4: 用户
+      提交信息: 3: 用户
+    section 验证
+      邮箱验证: 2: 用户
+      完成注册: 5: 用户</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journey</span><br><span class="line">    title 用户注册流程</span><br><span class="line">    section 注册</span><br><span class="line">      访问页面: 5: 用户</span><br><span class="line">      填写表单: 4: 用户</span><br><span class="line">      提交信息: 3: 用户</span><br><span class="line">    section 验证</span><br><span class="line">      邮箱验证: 2: 用户</span><br><span class="line">      完成注册: 5: 用户</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="8-ER-图-Entity-Relationship-Diagram"><a href="#8-ER-图-Entity-Relationship-Diagram" class="headerlink" title="8. ER 图 (Entity Relationship Diagram)"></a>8. ER 图 (Entity Relationship Diagram)</h2><pre class="mermaid">erDiagram
+    CUSTOMER ||--o{ ORDER : places
+    ORDER ||--|{ LINE_ITEM : contains
+    CUSTOMER }|..|{ DELIVERY_ADDRESS : uses</pre>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE_ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY_ADDRESS : uses</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="9-Mermaid-小技巧"><a href="#9-Mermaid-小技巧" class="headerlink" title="9. Mermaid 小技巧"></a>9. Mermaid 小技巧</h2><ul>
+<li>使用 <code>style</code> 自定义节点颜色和样式</li>
+<li>箭头类型可选 <code>--&gt;</code>、<code>---</code>、<code>-.-&gt;</code> 等</li>
+<li>节点形状：<code>[]</code> 矩形，<code>()</code> 椭圆，<code>&#123;&#125;</code> 决策</li>
+<li>可以嵌套 subgraph</li>
+</ul>
+<hr>
+<p><strong>提示</strong>  </p>
+<ol>
+<li>在 Typora 中确保已启用 Mermaid 渲染（通常在 <code>偏好设置 -&gt; Markdown -&gt; 渲染</code> 中）。  </li>
+<li>所有 Mermaid 图都以 <code>mermaid</code> 包裹即可直接渲染。  </li>
+<li>可在 Typora 中直接编辑文本和 Mermaid 代码，实时预览效果。</li>
+</ol>
+<p><strong>参考文档</strong><br><a href="https://mermaid-js.github.io/mermaid/#/">Mermaid 官方文档</a></p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>语法/格式</category>
+      </categories>
+      <tags>
+        <tag>Mermaid</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回溯算法continue,break,return使用分析</title>
+    <url>/2025/10/29/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95continue,break,return%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/</url>
+    <content><![CDATA[<h3 id="break使用错误"><a href="#break使用错误" class="headerlink" title="break使用错误:"></a>break使用错误:</h3><p><a href="https://leetcode.cn/problems/non-decreasing-subsequences/description/">leetcode491</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//使用错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="去重continue："><a href="#去重continue：" class="headerlink" title="去重continue："></a>去重continue：</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&gt;startIndex&amp;&amp;nums[i<span class="number">-1</span>]==nums[i])<span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="错误使用return"><a href="#错误使用return" class="headerlink" title="错误使用return:"></a>错误使用return:</h3><p><a href="https://leetcode.cn/problems/restore-ip-addresses/description/">leetcode93</a></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>正确代码：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><table>
+<thead>
+<tr>
+<th><strong>continue</strong></th>
+<th>跳过当前一个叶子节点</th>
+<th>去重、跳过无效但同级其他可能有效</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>break</strong></td>
+<td>跳过当前节点的所有后续兄弟节点</td>
+<td>当前选择无效，但父节点的其他选择可能有效</td>
+</tr>
+<tr>
+<td><strong>return</strong></td>
+<td>跳过当前子树及所有后续兄弟节点</td>
+<td>找到解或确定整条路径无解</td>
+</tr>
+</tbody></table>
+<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><pre class="mermaid">graph TD
+A((A)) --> B((B))
+A --> C((C))
+A --> D((D))
+
+B --> E((E))
+B --> F((F))
+B --> G((G))
+
+C --> H((H))
+C --> I((I))
+
+D --> J((J))
+D --> K((K))</pre>
+
+<pre class="mermaid">graph TD
+    A --> B
+    A --> C
+    A --> D
+    B --> E
+    B --> F
+    B --> G
+    C --> H
+    C --> I
+    D --> J
+    D --> K
+    
+    classDef highlight fill:#ffcccc
+    class F highlight</pre>
+
+<h4 id="使用continue："><a href="#使用continue：" class="headerlink" title="使用continue："></a>使用continue：</h4><p>只会跳过F然后执行G，后面CD的子孩子也正常执行</p>
+<h4 id="使用break："><a href="#使用break：" class="headerlink" title="使用break："></a>使用break：</h4><p>跳过F及后面的同级节点也就是G，后面CD的子孩子也正常执行</p>
+<h4 id="使用return："><a href="#使用return：" class="headerlink" title="使用return："></a>使用return：</h4><p> F的子树、G、以及B的后续兄弟C和D全部跳过</p>
+<h3 id="具体问题中的树形分析"><a href="#具体问题中的树形分析" class="headerlink" title="具体问题中的树形分析"></a>具体问题中的树形分析</h3><h4 id="break使用错误："><a href="#break使用错误：" class="headerlink" title="break使用错误："></a>break使用错误：</h4><p>根据树形结构选取，原始数组: [4,6,7,7]，4-6，4-6-7，4-7，4-7-7。假如使用4-6-7错误并且break，那么后面的4-7，4-7-7都会被舍弃掉，可以画树形图更好理解。</p>
+<h4 id="去重continue：-1"><a href="#去重continue：-1" class="headerlink" title="去重continue："></a>去重continue：</h4><p>和上面一样理解，遇到重复的continue掉然后继续执行下一个，比如: [4,6,7,7,8]，4-6，4-6-7[2]，这个时候下一个是7[3]，continue掉,到4-6-8。</p>
+<h4 id="错误使用return-1"><a href="#错误使用return-1" class="headerlink" title="错误使用return:"></a>错误使用return:</h4><p>字符串: “25525511135”</p>
+<pre class="mermaid">graph TD
+    start((start))
+    a1((2))
+    a2((25))
+    a3((255))
+    b1((5))
+    b2((55))
+    
+    start --> a1
+    start --> a2
+    start --> a3
+    a1 --> b1
+    a1 --> b2</pre>
+
+<p>如果25中有一颗子树不合理，比如25-5-2-5511135，用return，255后面的可能情况都没有了（跳过当前子树及所有后续兄弟节点）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>Code</category>
+        <category>回溯</category>
+      </categories>
+      <tags>
+        <tag>leetcode</tag>
+        <tag>算法</tag>
+        <tag>回溯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>回溯经典问题n皇后解决</title>
+    <url>/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/</url>
+    <content><![CDATA[<p><a href="https://leetcode.cn/problems/n-queens/description/">leetcode题目链接</a></p>
+<p>我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层</p>
+<p><img data-src="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png" alt="n皇后问题"></p>
+<span id="more"></span>
+
+<p>而终止条件也显而易见当棋子的数量等于n的大小（row&#x3D;&#x3D;n）</p>
+<p>如图所示</p>
+<p>因此回溯算法就很容易得出</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>而在判断位置是否合法化上，我们可以采取剪枝操作降低时间复杂度</p>
+<p>1，回溯中采取的一行只能有一个棋子的操作，所以判断横向可以省略</p>
+<p>2，在回溯操作中，放棋子都是从上至下，因此下面的检查就可以省略，直接对上方和两个斜上方进行检查</p>
+<p>代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>最终的代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt;res;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">solveNQueens</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;string&gt;<span class="built_in">chessBoard</span>(n,<span class="built_in">string</span>(n,<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">        <span class="built_in">backTracking</span>(n,<span class="number">0</span>,chessBoard);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>技术</category>
+        <category>Code</category>
+        <category>回溯</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>回溯</tag>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基础回溯算法</title>
     <url>/2026/04/29/%E5%9F%BA%E7%A1%80%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95/</url>
     <content><![CDATA[<p>回溯法也可以叫做回溯搜索法，它是一种搜索的方式，回溯是递归的副产品，只要有递归就会有回溯。</p>
@@ -105,6 +394,10 @@ F --> G1[...]</pre>
 <p>今天蓝桥杯出成绩了，只有省二，去年好歹拿了个省一，烂完了，刷的和没刷一样,安心考研吧</p>
 <h3 id="25-4-28"><a href="#25-4-28" class="headerlink" title="25&#x2F;4.28"></a>25&#x2F;4.28</h3><p>马上五一了，等到五一休息两天再加把劲，明天算法还要补课，进度还是要加快脚步了</p>
 <p>现在要注重身材管理了，要少吃点了，奶茶一周一次吧，起飞也要控制在一周一次了，再像现在这样不节制记忆力专注力都要大幅下降</p>
+<hr>
+<h3 id="25-5-13"><a href="#25-5-13" class="headerlink" title="25&#x2F;5.13"></a>25&#x2F;5.13</h3><p>这数学怎么学的这么累，草了，这第八讲，本来昨天两个小时就动了三题，写的人都炸了，还是考研第一次以来把电脑放实验室里，今天10点到了继续写数学，写到现在下午5：30了才把错题搞完了，正确率也就50-60%，不过这点困难难不倒我，今天还越写越来劲了，计组也写的一塌糊涂，只能一步一步走了</p>
+<p>现在家里情况越来越差了，妈妈还检查出乙肝来了，害，感觉得加吧劲了，一定要考到这个研啊，成家的事反正现在一点想法都没有了，一个人自由自在挺好的</p>
+<p>后面考虑做个能记录读后感的小程序或者软件吧，感觉用deepseekv4+Claudecode不错，咸鱼上买了三个月的geminipro，不过最近Gemini降智挺严重的，等再过几天看看怎么样，chatgpt在小黑盒上找了一个盒友一起拼车，一个人10刀，感觉还不错，不过我这边这个实验要加快了，不然老黄那边都不好说，尽量这个月把实验搞定，之后把论文什么的快速解决</p>
 ]]></content>
       <categories>
         <category>随笔</category>
@@ -278,61 +571,6 @@ F --> G1[...]</pre>
       </tags>
   </entry>
   <entry>
-    <title>回溯经典问题n皇后解决</title>
-    <url>/2025/11/04/%E5%9B%9E%E6%BA%AF%E7%BB%8F%E5%85%B8%E9%97%AE%E9%A2%98n%E7%9A%87%E5%90%8E%E8%A7%A3%E5%86%B3/</url>
-    <content><![CDATA[<p><a href="https://leetcode.cn/problems/n-queens/description/">leetcode题目链接</a></p>
-<p>我们继续将其抽象为一颗树，主层for循环用来遍历一层位置的合法，而递归每一层</p>
-<p><img data-src="https://cdn.jsdelivr.net/gh/kooti-123/blog-pics@main/img/image-n%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98.png" alt="n皇后问题"></p>
-<span id="more"></span>
-
-<p>而终止条件也显而易见当棋子的数量等于n的大小（row&#x3D;&#x3D;n）</p>
-<p>如图所示</p>
-<p>因此回溯算法就很容易得出</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">        res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">            <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">            chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>而在判断位置是否合法化上，我们可以采取剪枝操作降低时间复杂度</p>
-<p>1，回溯中采取的一行只能有一个棋子的操作，所以判断横向可以省略</p>
-<p>2，在回溯操作中，放棋子都是从上至下，因此下面的检查就可以省略，直接对上方和两个斜上方进行检查</p>
-<p>代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-<p>最终的代码如下：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt;res;</span><br><span class="line">    <span class="function"><span class="type">void</span> <span class="title">backTracking</span><span class="params">(<span class="type">int</span> n,<span class="type">int</span> row,vector&lt;string&gt;&amp;chessBoard)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(row==n)&#123;</span><br><span class="line">            res.<span class="built_in">push_back</span>(chessBoard);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> col=<span class="number">0</span>;col&lt;n;col++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">isValid</span>(chessBoard,col,row,n))&#123;</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;Q&#x27;</span>;</span><br><span class="line">                <span class="built_in">backTracking</span>(n,row<span class="number">+1</span>,chessBoard);</span><br><span class="line">                chessBoard[row][col]=<span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="type">bool</span> <span class="title">isValid</span><span class="params">(vector&lt;string&gt;&amp;chessBoard,<span class="type">int</span> col,<span class="type">int</span> row,<span class="type">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][col]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">-1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&gt;=<span class="number">0</span>;i--,j--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=row<span class="number">-1</span>,j=col<span class="number">+1</span>;i&gt;=<span class="number">0</span>&amp;&amp;j&lt;n;i--,j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(chessBoard[i][j]==<span class="string">&#x27;Q&#x27;</span>)<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;string&gt;&gt; <span class="built_in">solveNQueens</span>(<span class="type">int</span> n) &#123;</span><br><span class="line">        vector&lt;string&gt;<span class="built_in">chessBoard</span>(n,<span class="built_in">string</span>(n,<span class="string">&#x27;.&#x27;</span>));</span><br><span class="line">        <span class="built_in">backTracking</span>(n,<span class="number">0</span>,chessBoard);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>Code</category>
-        <category>回溯</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>回溯</tag>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>游戏视频</title>
-    <url>/2025/10/30/%E8%A7%86%E9%A2%91/</url>
-    <content><![CDATA[<span id="more"></span>
-
-<h2 id="杀戮尖塔"><a href="#杀戮尖塔" class="headerlink" title="杀戮尖塔"></a>杀戮尖塔</h2><h3 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h3><h4 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h4><iframe src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
-
-<h2 id="战地6"><a href="#战地6" class="headerlink" title="战地6"></a>战地6</h2><h3 id="马枪马完了"><a href="#马枪马完了" class="headerlink" title="马枪马完了"></a>马枪马完了</h3><iframe src="https://www.youtube.com/embed/BexTJmxGiDQ?si=RC88GNgPiX4rvtm9" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
-
-
-
-<h3 id="rpg打下飞机"><a href="#rpg打下飞机" class="headerlink" title="rpg打下飞机"></a>rpg打下飞机</h3><iframe src="https://www.youtube.com/embed/PdUSQ5ehAeU?si=JCxjDKW-wrpE4NYe" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
-
-]]></content>
-      <categories>
-        <category>视频</category>
-      </categories>
-      <tags>
-        <tag>视频</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>照片</title>
     <url>/2025/10/30/%E7%85%A7%E7%89%87/</url>
     <content><![CDATA[<h1 id="游戏"><a href="#游戏" class="headerlink" title="游戏"></a>游戏</h1><h2 id="杀戮尖塔"><a href="#杀戮尖塔" class="headerlink" title="杀戮尖塔"></a>杀戮尖塔</h2><h3 id="角色图"><a href="#角色图" class="headerlink" title="角色图"></a>角色图</h3><div class="image-grid image-grid-4">
@@ -428,258 +666,24 @@ F --> G1[...]</pre>
       </tags>
   </entry>
   <entry>
-    <title>回溯算法continue,break,return使用分析</title>
-    <url>/2025/10/29/%E5%9B%9E%E6%BA%AF%E7%AE%97%E6%B3%95continue,break,return%E4%BD%BF%E7%94%A8%E5%88%86%E6%9E%90/</url>
-    <content><![CDATA[<h3 id="break使用错误"><a href="#break使用错误" class="headerlink" title="break使用错误:"></a>break使用错误:</h3><p><a href="https://leetcode.cn/problems/non-decreasing-subsequences/description/">leetcode491</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;<span class="comment">//使用错误</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    <title>游戏视频</title>
+    <url>/2025/10/30/%E8%A7%86%E9%A2%91/</url>
+    <content><![CDATA[<span id="more"></span>
 
-<p>正确代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(path[n<span class="number">-1</span>],nums[i]))&#123;</span><br><span class="line">        path.<span class="built_in">push_back</span>(nums[i]);</span><br><span class="line">        <span class="built_in">backTracking</span>(i<span class="number">+1</span>,nums);</span><br><span class="line">        path.<span class="built_in">pop_back</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="杀戮尖塔"><a href="#杀戮尖塔" class="headerlink" title="杀戮尖塔"></a>杀戮尖塔</h2><h3 id="猎人："><a href="#猎人：" class="headerlink" title="猎人："></a>猎人：</h3><h4 id="猎人运转"><a href="#猎人运转" class="headerlink" title="猎人运转"></a>猎人运转</h4><iframe src="https://www.youtube.com/embed/AdNJHmF4Tp4?si=wRY_NDwVwo5ebo-w?rel=0" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
-<h3 id="去重continue："><a href="#去重continue：" class="headerlink" title="去重continue："></a>去重continue：</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(i&gt;startIndex&amp;&amp;nums[i<span class="number">-1</span>]==nums[i])<span class="keyword">continue</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="战地6"><a href="#战地6" class="headerlink" title="战地6"></a>战地6</h2><h3 id="马枪马完了"><a href="#马枪马完了" class="headerlink" title="马枪马完了"></a>马枪马完了</h3><iframe src="https://www.youtube.com/embed/BexTJmxGiDQ?si=RC88GNgPiX4rvtm9" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
-<h3 id="错误使用return"><a href="#错误使用return" class="headerlink" title="错误使用return:"></a>错误使用return:</h3><p><a href="https://leetcode.cn/problems/restore-ip-addresses/description/">leetcode93</a></p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>正确代码：</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i=startIndex;i&lt;s.<span class="built_in">size</span>();i++)&#123;</span><br><span class="line">    <span class="keyword">if</span> (i - startIndex + <span class="number">1</span> &gt; <span class="number">3</span>) <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">if</span> (i + <span class="number">1</span> &gt; s.<span class="built_in">size</span>()) <span class="keyword">break</span>;</span><br><span class="line">    string segment = s.<span class="built_in">substr</span>(startIndex, i - startIndex + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="built_in">isValid</span>(segment))&#123;</span><br><span class="line">        s.<span class="built_in">insert</span>(i<span class="number">+1</span>,<span class="string">&quot;.&quot;</span>);</span><br><span class="line">        numIndex++;</span><br><span class="line">        <span class="built_in">backtracking</span>(i<span class="number">+2</span>,s,numIndex);</span><br><span class="line">        numIndex--;</span><br><span class="line">        s.<span class="built_in">erase</span>(i<span class="number">+1</span>,<span class="number">1</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><table>
-<thead>
-<tr>
-<th><strong>continue</strong></th>
-<th>跳过当前一个叶子节点</th>
-<th>去重、跳过无效但同级其他可能有效</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>break</strong></td>
-<td>跳过当前节点的所有后续兄弟节点</td>
-<td>当前选择无效，但父节点的其他选择可能有效</td>
-</tr>
-<tr>
-<td><strong>return</strong></td>
-<td>跳过当前子树及所有后续兄弟节点</td>
-<td>找到解或确定整条路径无解</td>
-</tr>
-</tbody></table>
-<h3 id="举例："><a href="#举例：" class="headerlink" title="举例："></a>举例：</h3><pre class="mermaid">graph TD
-A((A)) --> B((B))
-A --> C((C))
-A --> D((D))
+<h3 id="rpg打下飞机"><a href="#rpg打下飞机" class="headerlink" title="rpg打下飞机"></a>rpg打下飞机</h3><iframe src="https://www.youtube.com/embed/PdUSQ5ehAeU?si=JCxjDKW-wrpE4NYe" width="100%" height="300" frameborder="0" loading="lazy" allowfullscreen></iframe>
 
-B --> E((E))
-B --> F((F))
-B --> G((G))
-
-C --> H((H))
-C --> I((I))
-
-D --> J((J))
-D --> K((K))</pre>
-
-<pre class="mermaid">graph TD
-    A --> B
-    A --> C
-    A --> D
-    B --> E
-    B --> F
-    B --> G
-    C --> H
-    C --> I
-    D --> J
-    D --> K
-    
-    classDef highlight fill:#ffcccc
-    class F highlight</pre>
-
-<h4 id="使用continue："><a href="#使用continue：" class="headerlink" title="使用continue："></a>使用continue：</h4><p>只会跳过F然后执行G，后面CD的子孩子也正常执行</p>
-<h4 id="使用break："><a href="#使用break：" class="headerlink" title="使用break："></a>使用break：</h4><p>跳过F及后面的同级节点也就是G，后面CD的子孩子也正常执行</p>
-<h4 id="使用return："><a href="#使用return：" class="headerlink" title="使用return："></a>使用return：</h4><p> F的子树、G、以及B的后续兄弟C和D全部跳过</p>
-<h3 id="具体问题中的树形分析"><a href="#具体问题中的树形分析" class="headerlink" title="具体问题中的树形分析"></a>具体问题中的树形分析</h3><h4 id="break使用错误："><a href="#break使用错误：" class="headerlink" title="break使用错误："></a>break使用错误：</h4><p>根据树形结构选取，原始数组: [4,6,7,7]，4-6，4-6-7，4-7，4-7-7。假如使用4-6-7错误并且break，那么后面的4-7，4-7-7都会被舍弃掉，可以画树形图更好理解。</p>
-<h4 id="去重continue：-1"><a href="#去重continue：-1" class="headerlink" title="去重continue："></a>去重continue：</h4><p>和上面一样理解，遇到重复的continue掉然后继续执行下一个，比如: [4,6,7,7,8]，4-6，4-6-7[2]，这个时候下一个是7[3]，continue掉,到4-6-8。</p>
-<h4 id="错误使用return-1"><a href="#错误使用return-1" class="headerlink" title="错误使用return:"></a>错误使用return:</h4><p>字符串: “25525511135”</p>
-<pre class="mermaid">graph TD
-    start((start))
-    a1((2))
-    a2((25))
-    a3((255))
-    b1((5))
-    b2((55))
-    
-    start --> a1
-    start --> a2
-    start --> a3
-    a1 --> b1
-    a1 --> b2</pre>
-
-<p>如果25中有一颗子树不合理，比如25-5-2-5511135，用return，255后面的可能情况都没有了（跳过当前子树及所有后续兄弟节点）</p>
 ]]></content>
       <categories>
-        <category>技术</category>
-        <category>Code</category>
-        <category>回溯</category>
+        <category>视频</category>
       </categories>
       <tags>
-        <tag>leetcode</tag>
-        <tag>算法</tag>
-        <tag>回溯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Mermaid 语法总览</title>
-    <url>/2025/10/28/Mermaid%20%E8%AF%AD%E6%B3%95%E6%80%BB%E8%A7%88/</url>
-    <content><![CDATA[<hr>
-<h2 id="1-流程图-Flowchart"><a href="#1-流程图-Flowchart" class="headerlink" title="1. 流程图 (Flowchart)"></a>1. 流程图 (Flowchart)</h2><pre class="mermaid">flowchart TD
-    A[开始] --> B{判断条件}
-    B -->|是| C[执行操作1]
-    B -->|否| D[执行操作2]
-    C --> E[结束]
-    D --> E</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">flowchart TD</span><br><span class="line">    A[开始] --&gt; B&#123;判断条件&#125;</span><br><span class="line">    B --&gt;|是| C[执行操作1]</span><br><span class="line">    B --&gt;|否| D[执行操作2]</span><br><span class="line">    C --&gt; E[结束]</span><br><span class="line">    D --&gt; E</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="2-时序图-Sequence-Diagram"><a href="#2-时序图-Sequence-Diagram" class="headerlink" title="2. 时序图 (Sequence Diagram)"></a>2. 时序图 (Sequence Diagram)</h2><pre class="mermaid">sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>Bob: 你好，Bob
-    Bob-->>Alice: 你好，Alice
-    Alice->>Bob: 你在做什么？</pre>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sequenceDiagram</span><br><span class="line">    participant Alice</span><br><span class="line">    participant Bob</span><br><span class="line">    Alice-&gt;&gt;Bob: 你好，Bob</span><br><span class="line">    Bob--&gt;&gt;Alice: 你好，Alice</span><br><span class="line">    Alice-&gt;&gt;Bob: 你在做什么？</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="3-甘特图-Gantt-Chart"><a href="#3-甘特图-Gantt-Chart" class="headerlink" title="3. 甘特图 (Gantt Chart)"></a>3. 甘特图 (Gantt Chart)</h2><pre class="mermaid">gantt
-    title 项目进度
-    dateFormat  YYYY-MM-DD
-    section 设计
-    需求分析       :a1, 2025-10-01, 7d
-    原型设计       :after a1, 5d
-    section 开发
-    前端开发       :2025-10-10, 10d
-    后端开发       :2025-10-12, 12d</pre>
-
-
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">gantt</span><br><span class="line">    title 项目进度</span><br><span class="line">    dateFormat  YYYY-MM-DD</span><br><span class="line">    section 设计</span><br><span class="line">    需求分析       :a1, 2025-10-01, 7d</span><br><span class="line">    原型设计       :after a1, 5d</span><br><span class="line">    section 开发</span><br><span class="line">    前端开发       :2025-10-10, 10d</span><br><span class="line">    后端开发       :2025-10-12, 12d</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="4-类图-Class-Diagram"><a href="#4-类图-Class-Diagram" class="headerlink" title="4. 类图 (Class Diagram)"></a>4. 类图 (Class Diagram)</h2><pre class="mermaid">classDiagram
-    class Animal {
-        +String name
-        +eat()
-    }
-    class Dog {
-        +bark()
-    }
-    Animal <|-- Dog</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">classDiagram</span><br><span class="line">    class Animal &#123;</span><br><span class="line">        +String name</span><br><span class="line">        +eat()</span><br><span class="line">    &#125;</span><br><span class="line">    class Dog &#123;</span><br><span class="line">        +bark()</span><br><span class="line">    &#125;</span><br><span class="line">    Animal &lt;|-- Dog</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="5-状态图-State-Diagram"><a href="#5-状态图-State-Diagram" class="headerlink" title="5. 状态图 (State Diagram)"></a>5. 状态图 (State Diagram)</h2><pre class="mermaid">stateDiagram-v2
-    [*] --> 空闲
-    空闲 --> 工作
-    工作 --> 空闲
-    工作 --> 停止
-    停止 --> [*]</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">stateDiagram-v2</span><br><span class="line">    [*] --&gt; 空闲</span><br><span class="line">    空闲 --&gt; 工作</span><br><span class="line">    工作 --&gt; 空闲</span><br><span class="line">    工作 --&gt; 停止</span><br><span class="line">    停止 --&gt; [*]</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="6-饼图-Pie-Chart"><a href="#6-饼图-Pie-Chart" class="headerlink" title="6. 饼图 (Pie Chart)"></a>6. 饼图 (Pie Chart)</h2><pre class="mermaid">pie
-    title 网站流量来源
-    "直接访问" : 45
-    "搜索引擎" : 30
-    "社交媒体" : 25</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">pie</span><br><span class="line">    title 网站流量来源</span><br><span class="line">    &quot;直接访问&quot; : 45</span><br><span class="line">    &quot;搜索引擎&quot; : 30</span><br><span class="line">    &quot;社交媒体&quot; : 25</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="7-用户旅程图-Journey-Diagram"><a href="#7-用户旅程图-Journey-Diagram" class="headerlink" title="7. 用户旅程图 (Journey Diagram)"></a>7. 用户旅程图 (Journey Diagram)</h2><pre class="mermaid">journey
-    title 用户注册流程
-    section 注册
-      访问页面: 5: 用户
-      填写表单: 4: 用户
-      提交信息: 3: 用户
-    section 验证
-      邮箱验证: 2: 用户
-      完成注册: 5: 用户</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">journey</span><br><span class="line">    title 用户注册流程</span><br><span class="line">    section 注册</span><br><span class="line">      访问页面: 5: 用户</span><br><span class="line">      填写表单: 4: 用户</span><br><span class="line">      提交信息: 3: 用户</span><br><span class="line">    section 验证</span><br><span class="line">      邮箱验证: 2: 用户</span><br><span class="line">      完成注册: 5: 用户</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="8-ER-图-Entity-Relationship-Diagram"><a href="#8-ER-图-Entity-Relationship-Diagram" class="headerlink" title="8. ER 图 (Entity Relationship Diagram)"></a>8. ER 图 (Entity Relationship Diagram)</h2><pre class="mermaid">erDiagram
-    CUSTOMER ||--o{ ORDER : places
-    ORDER ||--|{ LINE_ITEM : contains
-    CUSTOMER }|..|{ DELIVERY_ADDRESS : uses</pre>
-
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">erDiagram</span><br><span class="line">    CUSTOMER ||--o&#123; ORDER : places</span><br><span class="line">    ORDER ||--|&#123; LINE_ITEM : contains</span><br><span class="line">    CUSTOMER &#125;|..|&#123; DELIVERY_ADDRESS : uses</span><br></pre></td></tr></table></figure>
-
-<hr>
-<h2 id="9-Mermaid-小技巧"><a href="#9-Mermaid-小技巧" class="headerlink" title="9. Mermaid 小技巧"></a>9. Mermaid 小技巧</h2><ul>
-<li>使用 <code>style</code> 自定义节点颜色和样式</li>
-<li>箭头类型可选 <code>--&gt;</code>、<code>---</code>、<code>-.-&gt;</code> 等</li>
-<li>节点形状：<code>[]</code> 矩形，<code>()</code> 椭圆，<code>&#123;&#125;</code> 决策</li>
-<li>可以嵌套 subgraph</li>
-</ul>
-<hr>
-<p><strong>提示</strong>  </p>
-<ol>
-<li>在 Typora 中确保已启用 Mermaid 渲染（通常在 <code>偏好设置 -&gt; Markdown -&gt; 渲染</code> 中）。  </li>
-<li>所有 Mermaid 图都以 <code>mermaid</code> 包裹即可直接渲染。  </li>
-<li>可在 Typora 中直接编辑文本和 Mermaid 代码，实时预览效果。</li>
-</ol>
-<p><strong>参考文档</strong><br><a href="https://mermaid-js.github.io/mermaid/#/">Mermaid 官方文档</a></p>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>语法/格式</category>
-      </categories>
-      <tags>
-        <tag>Mermaid</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>入门动态规划(Dynamic Programming)问题</title>
-    <url>/2025/10/21/%E5%85%A5%E9%97%A8%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92(Dynamic%20Programming)%E9%97%AE%E9%A2%98%E2%80%94%E2%80%94leetcode%2070(%E7%88%AC%E6%A5%BC%E6%A2%AF)%E5%92%8C746(%E6%9C%80%E5%B0%8F%E8%8A%B1%E8%B4%B9%E7%88%AC%E6%A5%BC%E6%A2%AF)%E7%9A%84%E7%AE%80%E5%8D%95dp%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<p>首先动态规划和贪心的区别：贪心的核心就是从局部最优推到整体最优，和上一个状态没有关系，而动态规划顾名思义是动态的问题，比如经典的背包问题，每次装入时要考虑到背包的容量，而容量的大小通常由上一个装入背包的大小影响，所以贪心解决不了动态规划</p>
-<span id="more"></span>
-
-<h3 id="在动态规划问题上，我们要先考虑好5步："><a href="#在动态规划问题上，我们要先考虑好5步：" class="headerlink" title="在动态规划问题上，我们要先考虑好5步："></a>在动态规划问题上，我们要先考虑好5步：</h3><p>1：确定dp数组及下标含义</p>
-<p>2：确定递推公式</p>
-<p>3：dp数组的初始化</p>
-<p>4：数组的遍历顺序</p>
-<p>5：举例推导dp数组</p>
-<h3 id="以leetcode70为例："><a href="#以leetcode70为例：" class="headerlink" title="以leetcode70为例："></a>以leetcode70为例：</h3><p>1，确定dp数组：dp[i]数组确定为到达i阶有多少种方案;</p>
-<p>2，递推公式：我们到达第i阶是怎么到达的，只有两种方案，一个是从i-1走1步，另一个是从i-2走2步，所以到达第i阶就是这两个的总和相加，而到i-1的方案总数为dp[i-1],同理到达i-2的数量为dp[i-2]；所以推导出递推公式为dp[i]&#x3D;dp[i-1]+dp[i-2];</p>
-<p>3，初始化：dp[1]&#x3D;1,dp[2]&#x3D;2;</p>
-<p>4，数组遍历顺序：因为是由前两个的阶梯数推导出后第i个阶梯的方案，则从前往后遍历；</p>
-<p>5，可以自己举例子 (n&#x3D;3有三种)</p>
-<p>从而我们便可以得出代码</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">climbStairs</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">if</span> (n &lt;= <span class="number">2</span>) <span class="keyword">return</span> n;</span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        dp[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            dp[i] = dp[i - <span class="number">1</span>] + dp[i - <span class="number">2</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<h3 id="leetcode746："><a href="#leetcode746：" class="headerlink" title="leetcode746："></a><a href="https://leetcode.cn/problems/min-cost-climbing-stairs/description/">leetcode746</a>：</h3><p>1，确定dp数组：dp[i]数组确定为到达i阶需要花费的总的钱数;</p>
-<p>2，数组遍历顺序：这里我写这道题时先考虑的遍历顺序，由题可知，dp[n]&#x3D;0,也就是到达屋顶，所以我进行反向遍历，那么最后的第1层和第0层只要比较两个的最小值就可以知道从哪个点出发花费最小；</p>
-<p>3，递推公式：爬到第i层我们的最小花费怎么求？同70我们也可以知道i的花费也由i-1和i-2决定，毕竟dp[i-1],dp[i-2]分别是到达第i-1层的最小花费和到达第i-2层的最小花费，所以我们找到其中的最小花费，则dp[i]&#x3D;cost[i]+min(dp[i-1],dp[i-2]);</p>
-<p>4，初始化：dp[n]&#x3D;0,dp[n-1]&#x3D;cost[n-1];</p>
-<p>5，举例子：略</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>()] = <span class="number">0</span>;</span><br><span class="line">        dp[cost.<span class="built_in">size</span>() - <span class="number">1</span>] = cost[cost.<span class="built_in">size</span>() - <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = cost.<span class="built_in">size</span>() - <span class="number">2</span>; i &gt;= <span class="number">0</span>; i--) &#123;</span><br><span class="line">            dp[i] = cost[i] + <span class="built_in">min</span>(dp[i + <span class="number">1</span>], dp[i + <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">min</span>(dp[<span class="number">0</span>], dp[<span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-<p>不过正向和方向遍历也没什么区别</p>
-<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="type">int</span> <span class="title">minCostClimbingStairs</span><span class="params">(vector&lt;<span class="type">int</span>&gt;&amp; cost)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(cost.size() + <span class="number">1</span>)</span></span>;</span><br><span class="line">        dp[<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 默认第一步都是不花费体力的</span></span><br><span class="line">        dp[<span class="number">1</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= cost.<span class="built_in">size</span>(); i++) &#123;</span><br><span class="line">            dp[i] = <span class="built_in">min</span>(dp[i - <span class="number">1</span>] + cost[i - <span class="number">1</span>], dp[i - <span class="number">2</span>] + cost[i - <span class="number">2</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[cost.<span class="built_in">size</span>()];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>技术</category>
-        <category>Code</category>
-      </categories>
-      <tags>
-        <tag>leetcode</tag>
-        <tag>dp</tag>
-        <tag>算法</tag>
+        <tag>视频</tag>
       </tags>
   </entry>
 </search>
